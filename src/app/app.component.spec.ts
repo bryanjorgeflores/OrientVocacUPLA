@@ -1,6 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { EncuestasComponent } from './encuestas/encuestas.component';
+import { LoginComponent } from './login/login.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,13 +11,15 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        EncuestasComponent,
+        LoginComponent
       ],
     }).compileComponents();
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.createComponent(LoginComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
