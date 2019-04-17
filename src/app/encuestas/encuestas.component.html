@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 
 
 <!DOCTYPE html>
@@ -25,16 +25,10 @@
 </head>
 <body >
 <div  class="flex-container">
-  <div id="inner" class="card-background-page" >
-    <img width="300px" height="300px" src="../../assets/img.png">
+  <div  *ngFor="let encuesta of encuestas" id="inner" class="card-background-page" >
+    <img width="300px" height="300px" src="{{encuesta.src}}">
   </div>
-  <div id="inner" class="card-background-page">
-    <img width="300px" height="300px" src="../../assets/img.png">
-  </div>
-  
-  <div id="inner" class="card-background-page">
-    <img width="300px" height="300px" src="../../assets/img.png">
-  </div>
+ 
 </div>
 <hr>
 
