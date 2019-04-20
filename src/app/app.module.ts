@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatCardModule, MatGridListModule } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RegisterComponent } from './register/register.component';
 
 const ROUTES: Route[] = [
   { path: 'login', component: LoginComponent},
@@ -22,7 +23,8 @@ const ROUTES: Route[] = [
     AppComponent,
     EncuestasComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
