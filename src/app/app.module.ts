@@ -7,15 +7,18 @@ import { EncuestasComponent } from './encuestas/encuestas.component';
 import { LoginComponent } from './login/login.component';
 import { Route } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatCardModule, MatGridListModule } from '@angular/material';
+import { MatCardModule, MatGridListModule, MatIconModule } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RegisterComponent } from './register/register.component';
+import { ColegiosComponent } from './colegios/colegios.component';
+import { Encuesta1Component } from './encuesta1/encuesta1.component';
 
 const ROUTES: Route[] = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: AppComponent},
-  { path: 'encuestas', component: EncuestasComponent}
+  { path: 'encuestas', component: EncuestasComponent},
+  { path: 'colegios', component: ColegiosComponent}
 ]
 
 @NgModule({
@@ -24,14 +27,17 @@ const ROUTES: Route[] = [
     EncuestasComponent,
     LoginComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ColegiosComponent,
+    Encuesta1Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

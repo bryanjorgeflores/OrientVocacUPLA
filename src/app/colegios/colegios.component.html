@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="row">
+      <div class="col-lg-8 col-md-10 ml-auto mr-auto">
+      <h4><small>Colegios</small></h4>
+          <div class="table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th class="text-center">#</th>
+                      <th class="text-center">Nombre</th>
+                      <th class="text-center">Ubigeo</th>
+                      <th class="text-center">Clave</th>
+                      <th class="text-center">Total</th>
+                      <th class="text-center">Accion</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let colegio of colegios">
+                    <td class="text-center">{{colegio.codigo}}</td>
+                    <td class="text-center">{{colegio.nombre}}</td>
+                    <td class="text-center">{{colegio.ubicacion}}</td>
+                    <td class="text-center">{{colegio.clave}}</td>
+                    <td class="text-center">{{colegio.total}}</td>
+                    <td class="td-actions text-center">
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">X</i>
+                            </button>
+                        </td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+    
+  </div>
+</div>
+</body>
+</html>
