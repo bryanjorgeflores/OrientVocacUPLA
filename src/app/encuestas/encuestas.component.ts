@@ -11,15 +11,18 @@ export class EncuestasComponent implements OnInit {
   constructor() { 
     let encuesta1:Encuesta={
       nombre: 'Encuesta 1',
-      src:'../../assets/img.png'
+      detalle: 'Informacion de la encuesta 1',
+      src:'../../assets/login.jpg'
     };
     let encuesta2:Encuesta={
       nombre: 'Encuesta 2',
-      src:'../../assets/img.png'
+      detalle: 'Informacion de la encuesta 2',
+      src:'../../assets/login2.jpg'
     };
     let encuesta3:Encuesta={
       nombre: 'Encuesta 3',
-      src:'../../assets/img.png'
+      detalle: 'Informacion de la encuesta 3',
+      src:'../../assets/login.jpeg'
     }
     this.encuestas = [encuesta1,encuesta2,encuesta3];
   }
