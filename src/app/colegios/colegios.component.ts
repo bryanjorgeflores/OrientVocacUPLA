@@ -35,6 +35,7 @@ export class ColegiosComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log('colegios');
   }
 
 }

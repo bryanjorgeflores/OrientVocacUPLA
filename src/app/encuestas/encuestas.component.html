@@ -1,83 +1,29 @@
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Encuestas</title>
-</head>
-<body >
-    <!-- <div  class="flex-container">
-      <div  *ngFor="let encuesta of encuestas" id="inner" class="card-background-page" >
-        <img width="300px" height="300px" src="{{encuesta.src}}">
-      </div>
-    
-    </div> -->
-    <hr>
-    <div class="container">
-      <div class="card" *ngFor="let encuesta of encuestas">
-        <div class="imgBx">
-          <img src="{{encuesta.src}}" alt="">
-        </div>
-        <div class="details">
-          <div class="content">
-            <h2>{{encuesta.nombre}}<br>
-              <span>{{encuesta.detalle}}</span>
-            </h2>
-            <ul>
-              <li>
-                <a href="#">Dar Encuesta</a>
-              </li>
-            </ul>
-            <a href="#">Continuar</a>
-          </div>
-        </div>
-      </div>
-
-      <table style="margin-left:auto; margin-right:auto;" >
-          <tbody>
-            <tr>
-              <td>
-                <div style="float:left" class="col-md-3 col-sm-6">
-                  <div class="progress blue">
-                      <span class="progress-left">
-                          <span class="progress-bar"></span>
-                      </span>
-                      <span class="progress-right">
-                          <span class="progress-bar"></span>
-                      </span>
-                      <div class="progress-value">90%</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                TEST 1
-              </td>
-              <td>
-        
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="col-md-3 col-sm-6">
-                  <div class="progress yellow">
-                      <span class="progress-left">
-                          <span class="progress-bar"></span>
-                      </span>
-                      <span class="progress-right">
-                          <span class="progress-bar"></span>
-                      </span>
-                      <div class="progress-value">75%</div>
-                    </div>
-                </div>
-              </td>
-              <td>
-                TEST 2
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
+<div class="container">
+  <div class="card" *ngFor="let encuesta of encuestas">
+    <div class="imgBx">
+      <img src="{{encuesta.src}}" alt="Imagen de tipo de Test" />
     </div>
-  
-</body>
-</html>
+    <div class="details">
+      <div class="content">
+        <h2>{{encuesta.nombre}}<br>
+          <span>{{encuesta.detalle}}</span>
+        </h2>
+        <ul>
+          <li>
+            <a href="#">Dar Encuesta</a>
+          </li>
+        </ul>
+        <a href="#">Continuar</a>
+      </div>
+    </div>
+    <div class="progress blue">
+      <span class="progress-left">
+        <span class="progress-bar"></span>
+      </span>
+      <span class="progress-right">
+        <span class="progress-bar"></span>
+      </span>
+      <div class="progress-value">90%</div>
+    </div>
+  </div>
+</div>

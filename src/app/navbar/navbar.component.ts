@@ -6,9 +6,9 @@ import { EncuestasComponent } from '../encuestas/encuestas.component';
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: '', component: AppComponent},
-  {path: 'encuestas', component: EncuestasComponent}
+  { path: 'login', component: LoginComponent },
+  { path: 'colegios', component: AppComponent },
+  { path: 'encuestas', component: EncuestasComponent },
 ];
 
 @Component({

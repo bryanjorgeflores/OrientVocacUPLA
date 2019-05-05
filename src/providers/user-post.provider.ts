@@ -1,0 +1,19 @@
+import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { User } from 'src/interfaces/models/user.model';
+import { URI } from 'src/config/constants.config/http.constant.config';
+
+@Injectable()
+
+export class UserPostProvider {
+  constructor(
+    public http: HttpClient,
+
+  ) {}
+
+  postUserToRegister(user: User): Observable<any>{
+    return this.http.post<any>(`${URI}/register`, user);
+  }
+}

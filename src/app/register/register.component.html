@@ -1,51 +1,86 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Test Vocacional</title>
-</head>
-<body>
 <div class="login-block">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 login-sec">
-            <h2 class="text-center">Registrarse</h2>
-            <form class="login-form">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Usuario</label>
-                <input type="text" class="form-control" placeholder="Ingrese su usuario">
-              </div>
+  <div class="container">
 
-              <div class="form-group">
-                <label for="exampleInputPassword1">Contraseña</label>
-                <input type="password" class="form-control" placeholder="Ingrese su contraseña">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Repita Contraseña</label>
-                <input type="password" class="form-control" placeholder="Ingrese la misma contraseña">
-              </div>
+    <div class="row">
+      <div class="col-md-5 login-sec">
+        <h2 class="text-center">Ingresar</h2>
 
-              <div >
-              <button type="submit" routerLink="/encuestas" class="btn btn-register">
-                Registrarse 
-              </button>
-              </div>
-            </form>
-            
-        </div>
-        
-        <div class="col-md-7 banner-sec">
-                  <div id="carouselExampleIndicators"  data-ride="carousel">
-                      <ol class="carousel-indicators">
-                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-                        </ol>
-                  </div>
-        </div>    
+        <form class="login-form">
+          <div class="form-group">
+            <label for="user">Usuario</label>
+            <input 
+              type="text"
+              id="user"
+              name="username" 
+              class="form-control" 
+              placeholder="Ingrese su usuario" 
+              [(ngModel)]="user.username" />
+          </div>
+          <div class="form-group">
+            <label for="psw">Contraseña</label>
+            <input 
+              type="password" 
+              id="psw"
+              name="password"
+              class="form-control" 
+              placeholder="Ingrese Contraseña" 
+              [(ngModel)]="user.password" />
+          </div>
+          <div class="form-group">
+            <label for="name">Nombres Completos:</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              class="form-control" 
+              placeholder="Ingrese Nombres Completos" 
+              [(ngModel)]="user.name" />
+          </div>
+          <div class="form-group">
+            <label for="college">Colegio:</label>
+            <input list="college" name="college" [(ngModel)]="user.college" />
+            <datalist id="college">
+              <option *ngFor="let college of colleges; let i = index;" [value]="college.name">
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label for="name">Grado:</label>
+            <input list="degree" name="degree" [(ngModel)]="user.degree" />
+            <datalist id="degree">
+              <option *ngFor="let degree of degrees; let i = index;" [value]="degree">
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label for="gender">Género</label>
+            <select name="gender" id="gender" [(ngModel)]="user.gender">
+              <option value="male">Masculino</option>
+              <option value="female">Femenino</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="career">Carrera de Interés</label>
+            <input list="career" name="career" [(ngModel)]="user.career" />
+            <datalist id="career">
+              <option *ngFor="let career of careers; let i = index;" [value]="career">
+            </datalist>
+          </div>
+          <input type="submit" class="btn btn-login" value="Entrar" (click)="registerUser()" />
+          
+        </form>
+
       </div>
+
+      <div class="col-md-7 banner-sec">
+        <div id="carouselExampleIndicators"  data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0"class="active"></li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </div>
-</body>
 
 <router-outlet></router-outlet>
