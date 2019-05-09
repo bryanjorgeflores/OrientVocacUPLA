@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StyleGlobalConfig } from 'src/config/globals.config/style.global.config';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Test Vocacional';
+  constructor(
+    public styleGlobalConfig: StyleGlobalConfig,
+
+  ) { }
+  
+  title = 'Test de Orientación Vocacional';
+  background: string = this.styleGlobalConfig.backgroundStyle;
 }

@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Routes } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
-import { AppComponent } from '../app.component';
-import { EncuestasComponent } from '../encuestas/encuestas.component';
+import { Router } from '@angular/router';
 
+import { Title } from '@angular/platform-browser';
 
-const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'colegios', component: AppComponent },
-  { path: 'encuestas', component: EncuestasComponent },
-];
 
 @Component({
   selector: 'app-navbar',
@@ -18,14 +11,23 @@ const routes: Routes = [
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private titleService: Title,
+    private router: Router,
+
+  ) { }
 
   ngOnInit() {
   }
-  navbarOpen = true;
+  navbarOpen: boolean = true;
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
+  }
+
+  goTo(componentURL: string): void {
+    this.titleService.setTitle(componentURL);
+    this.router.navigateByUrl(componentURL);
   }
 
 }

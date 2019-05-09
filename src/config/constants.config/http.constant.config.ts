@@ -1,6 +1,6 @@
-const URI: string = "http://localhost:3000";
+const URL: string = "http://localhost:3000";
 
 export {
-  URI,
+  URL,
 
 }

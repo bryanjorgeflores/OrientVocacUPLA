@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserPostProvider } from 'src/providers/user-post.provider';
+import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
+import { CollegeGetProvider } from 'src/providers/get.providers/college.get.provider';
+
 import { User } from 'src/interfaces/models/user.model';
 import { College } from 'src/interfaces/models/college.model';
+import { entryPasswordRequirements } from 'src/config/constants.config/register.constant.config';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +15,7 @@ import { College } from 'src/interfaces/models/college.model';
 })
 export class RegisterComponent implements OnInit {
   user: User = {
-    username: 'hola',
+    username: '',
     password: '',
     name: '',
     college: '',
@@ -22,13 +25,11 @@ export class RegisterComponent implements OnInit {
 
   };
 
-  colleges: Array<College> = [
-    { name: 'Colegio 1', code: 'col', location: 'direccion de colegio1', acronym: 'col', total: 0 },
-    { name: 'Colegio 2', code: 'col', location: 'direccion de colegio2', acronym: 'col', total: 0 },
-    { name: 'Colegio 3', code: 'col', location: 'direccion de colegio3', acronym: 'col', total: 0 },
-    { name: 'Colegio 4', code: 'col', location: 'direccion de colegio4', acronym: 'col', total: 0 },
+  passwordRequirements: Array<any>;
+  repeatedPassword: string = '';
+  passwordBlock: boolean = true;
 
-  ];
+  colleges: Array<College>;
 
   degrees: Array<string> = ['Tercer Grado', 'Cuarto Grado', 'Quinto Grado'];
 
@@ -42,25 +43,49 @@ export class RegisterComponent implements OnInit {
 
 
 
+
   constructor(
-    public userPostProvider: UserPostProvider,
+    private userPostProvider: UserPostProvider,
+    private collegeGetProvider: CollegeGetProvider,
     private router: Router,
 
   ) { }
 
   ngOnInit() {
-  }
-
-  registerUser(): void {
-    console.log(this.user);
-    this.userPostProvider.postUserToRegister(this.user)
+    this.collegeGetProvider.getColleges()
       .subscribe(
-        (user: User) => {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.router.navigateByUrl('/encuestas')
+        (colleges: Array<College>) => {
+          colleges.sort();
+          this.colleges = colleges;
         },
         (err) => alert(err.error.text)
       );
+
+    this.passwordRequirements = entryPasswordRequirements(this.user.password, this.repeatedPassword);
+  }
+
+
+  checkPassword(): void {
+    this.passwordRequirements = entryPasswordRequirements(this.user.password, this.repeatedPassword);
+  }
+
+  registerUser(): void {
+
+    let checkPasswordRequirements: any = this.passwordRequirements.find(
+      (passwordRequirement: any) => passwordRequirement.condition === false);
+    
+    if (checkPasswordRequirements === undefined) {
+      this.userPostProvider.postUserToRegister(this.user)
+        .subscribe(
+          (user: User) => {
+            localStorage.setItem('user', JSON.stringify(user));
+            this.router.navigateByUrl('/encuestas')
+          },
+          (err) => alert(err.error.text)
+        );
+    } else {
+      return alert('Verificar Contraseña');
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { Route } from '@angular/router';
@@ -12,16 +12,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { EncuestasComponent } from './encuestas/encuestas.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ColegiosComponent } from './colegios/colegios.component';
+import { CollegesComponent } from './colleges/colleges.component';
 import { Encuesta1Component } from './encuesta1/encuesta1.component';
-import { UserPostProvider } from 'src/providers/user-post.provider';
 
-const ROUTES: Route[] = [
-  { path: 'login', component: LoginComponent},
-  { path: 'home', component: AppComponent},
-  { path: 'encuestas', component: EncuestasComponent},
-  { path: 'colegios', component: ColegiosComponent}
-];
+import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
+import { CollegeGetProvider } from 'src/providers/get.providers/college.get.provider';
+
+import { StyleGlobalConfig } from 'src/config/globals.config/style.global.config';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +28,7 @@ const ROUTES: Route[] = [
     LoginComponent,
     NavbarComponent,
     RegisterComponent,
-    ColegiosComponent,
+    CollegesComponent,
     Encuesta1Component
   ],
   imports: [
@@ -46,7 +44,9 @@ const ROUTES: Route[] = [
   ],
   providers: [
     UserPostProvider,
-    HttpClientModule,
+    Title,
+    CollegeGetProvider,
+    StyleGlobalConfig,
     
   ],
   bootstrap: [AppComponent]
