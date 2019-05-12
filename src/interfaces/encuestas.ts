@@ -1,7 +1,7 @@
-export interface Encuesta{
+export interface Encuesta {
     nombre: string;
-    detalle:string;
-    src:string;
+    detalle: string;
+    src: string;
     porcentaje: string;
     color: string;
 }

@@ -12,7 +12,7 @@ export class UserPostProvider {
   constructor(
     public http: HttpClient,
 
-  ) {}
+  ) { }
 
   postUserToRegister(user: User): Observable<any> {
     return this.http.post<any>(`${URL}/register`, user);

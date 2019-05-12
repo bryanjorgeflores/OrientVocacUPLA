@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EncuestasComponent } from './encuestas/encuestas.component';
+import { EvaluationsComponent } from './evaluations/evaluations.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { Encuesta1Component } from './encuesta1/encuesta1.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { CollegeComponent } from './college/college.component';
 import { CollegesComponent } from './colleges/colleges.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'encuestas', component: EncuestasComponent },
+  { path: 'evaluations', component: EvaluationsComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'colegios', component: CollegesComponent },
-  { path: 'inteligenciamultiple', component: Encuesta1Component },
-  
+  { path: 'colleges', component: CollegesComponent },
+  { path: 'evaluation', component: EvaluationComponent },
+  { path: 'college', component: CollegeComponent },
+  { path: 'navbar', component: NavbarComponent },
+  { path: '', pathMatch: 'prefix', redirectTo: 'evaluations' },
+
 ];
 
 @NgModule({

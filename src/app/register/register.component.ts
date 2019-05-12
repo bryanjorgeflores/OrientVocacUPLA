@@ -73,13 +73,17 @@ export class RegisterComponent implements OnInit {
 
     let checkPasswordRequirements: any = this.passwordRequirements.find(
       (passwordRequirement: any) => passwordRequirement.condition === false);
-    
+
     if (checkPasswordRequirements === undefined) {
       this.userPostProvider.postUserToRegister(this.user)
         .subscribe(
           (user: User) => {
             localStorage.setItem('user', JSON.stringify(user));
-            this.router.navigateByUrl('/encuestas')
+            
+            document.getElementById('navbar').style.display = '';
+            document.body.style.background = '#262626';
+
+            this.router.navigateByUrl('/evaluations')
           },
           (err) => alert(err.error.text)
         );

@@ -1,10 +1,10 @@
 export interface Evaluation {
-  _id?: string,
-  test: Array<string>,
+  _id?: string;
+  test: Array<string>;
   results: Array<{
-    code: number,
-    chord: boolean
-  }>
-  last: Array<number>,
-  message: string
+    code: number;
+    chord: boolean;
+  }>;
+  last: Array<number>;
+  message: string;
 }

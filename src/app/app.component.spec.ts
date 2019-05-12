@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { EncuestasComponent } from './encuestas/encuestas.component';
+import { EvaluationsComponent } from './evaluations/evaluations.component';
 import { LoginComponent } from './login/login.component';
 
 describe('AppComponent', () => {
@@ -12,7 +12,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        EncuestasComponent,
+        EvaluationsComponent,
         LoginComponent
       ],
     }).compileComponents();

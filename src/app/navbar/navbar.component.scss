@@ -1,3 +1,11 @@
+// Modal
+
+.modal-user, .modal-header, .modal-body, .modal-footer {
+  background-color: #262626;
+  border: solid 1px #428BFF;
+}
+
+
 /* colors */
 $blue: #428BFF;
 $red: #FF4A53;
@@ -25,7 +33,7 @@ $label-selector: "~ ul > li";
 $slider-selector: "~ .slider";
 $content-selector: "~ .content > section";
 
-@mixin tabs(
+@mixin tabs (
   $label-selector: $label-selector,
   $slider-selector: $slider-selector,
   $content-selector: $content-selector) {
@@ -171,6 +179,7 @@ $content-selector: "~ .content > section";
       }
     }
   }
+
   
   input[name="tab-control"] {
     @include tabs {

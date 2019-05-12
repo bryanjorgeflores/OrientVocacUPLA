@@ -1,0 +1,33 @@
+<div class="container" style="padding-top:66px;">
+  <div class="card" *ngFor="let test of tests">
+    <div routerLink="/evaluation">
+
+
+      <div class="imgBx">
+        <img src="{{test.src}}" alt="Imagen de tipo de Test" />
+      </div>
+      <div class="details">
+        <div class="content">
+          <h2>{{test.nombre}}<br>
+            <span>{{test.detalle}}</span>
+          </h2>
+          <ul>
+            <li>
+              <a href="#">Dar Encuesta</a>
+            </li>
+          </ul>
+          <a href="#">Continuar</a>
+        </div>
+      </div>
+      <div class="progress blue">
+        <span class="progress-left">
+          <span class="progress-bar"></span>
+        </span>
+        <span class="progress-right">
+          <span class="progress-bar"></span>
+        </span>
+        <div class="progress-value">90%</div>
+      </div>
+    </div>
+  </div>
+</div>

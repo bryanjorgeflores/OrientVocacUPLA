@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  isUserLoggedIn = false;
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+
+  }
+
+  login() {
+    document.getElementById('navbar').style.display = '';
+    document.body.style.background = '#262626';
+    this.router.navigateByUrl('/evaluations');
   }
 
 }

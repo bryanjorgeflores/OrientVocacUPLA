@@ -7,11 +7,9 @@ import { StyleGlobalConfig } from 'src/config/globals.config/style.global.config
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  navBarRender: boolean = true;
   constructor(
     public styleGlobalConfig: StyleGlobalConfig,
 
   ) { }
-  
-  title = 'Test de Orientación Vocacional';
-  background: string = this.styleGlobalConfig.backgroundStyle;
 }

@@ -1,50 +1,46 @@
-<div class="login-block">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 login-sec">
-            <h2 class="text-center">Ingresar</h2>
-            <form class="login-form">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Usuario</label>
-                <input type="text" class="form-control" placeholder="Ingrese su usuario">
-              </div>
+<div class="login-block" style="padding-top:100px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 login-sec">
+        <h2 class="text-center">Ingresar</h2>
+        <form class="login-form">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Usuario</label>
+            <input type="text" class="form-control" placeholder="Ingrese su usuario">
+          </div>
 
-              <div class="form-group">
-                <label for="exampleInputPassword1">Contraseña</label>
-                <input type="password" class="form-control" placeholder="Ingrese su contraseña">
-              </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" class="form-control" placeholder="Ingrese su contraseña">
+          </div>
 
-              <div >
-              <button type="submit" routerLink="/encuestas" class="btn btn-login">
-                Entrar 
-              </button>
-              </div>
+          <div>
+            <button type="submit" (click)="login()" class="btn btn-login">
+              Entrar
+            </button>
+          </div>
 
-              <div class="pb-5">
+          <div class="pb-5">
 
-              </div>
+          </div>
 
-              <div>
-                  <label class="pr-2">No tiene una cuenta?</label>
-                  <button routerLink="/register" class="btn btn-register btn-sm">
-                    Registrarme
-                  </button>
-              </div>
-            </form>
-            
-        </div>
-        
-        <div class="col-md-7 banner-sec">
-                  <div id="carouselExampleIndicators"  data-ride="carousel">
-                      <ol class="carousel-indicators">
-                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-                        </ol>
-                  </div>
-        </div>    
+          <div>
+            <label class="pr-2">No tiene una cuenta?</label>
+            <button routerLink="/register" class="btn btn-register btn-sm">
+              Registrarme
+            </button>
+          </div>
+        </form>
+
       </div>
+
+      <div class="col-md-7 banner-sec">
+        <div id="carouselExampleIndicators" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>
