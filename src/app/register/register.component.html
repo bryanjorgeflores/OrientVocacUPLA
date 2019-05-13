@@ -20,7 +20,7 @@
         <div class="form-group">
           <label for="college">Colegio:</label>
           <select id="college" class="form-control form-control-sm" autocomplete="off" [(ngModel)]="user.college">
-            <option *ngFor="let college of colleges; let i = index;" [value]="college._id">{{college.name}}</option>
+            <option *ngFor="let college of colleges; let i = index;" [value]="college._id">{{college.name | slice:5}}</option>
           </select>
         </div>
         <div>
