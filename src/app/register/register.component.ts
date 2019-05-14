@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
       this.userPostProvider.postUserToRegister(this.user)
         .subscribe(
           (user: User) => {
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('usertoken', JSON.stringify(user));
             
             document.getElementById('navbar').style.display = '';
             document.body.style.background = '#262626';

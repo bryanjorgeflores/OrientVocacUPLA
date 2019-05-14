@@ -88,7 +88,7 @@
               [(ngModel)]="repeatedPassword"
               (ngModelChange)="checkPassword()" />
             <div class="input-group-append">
-              <span class="input-group-text" id="inputGroup-sizing-sm" (click)="changeTypeInputPassword()">
+              <span class="input-group-text" id="inputGroup-sizing-sm" (click)="passwordBlock = !passwordBlock">
                 <img src="assets/eye-password{{passwordBlock? '-block': ''}}.png" alt="Icono Ojo" />
               </span>
             </div>

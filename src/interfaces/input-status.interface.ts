@@ -1,9 +1,9 @@
-export interface MessageStatus {
+interface MessageStatus {
   message: string;
-  status: StatusGeneral;
+  status: string;
 }
 
-export enum StatusGeneral {
+enum StatusGeneral {
   primary = 'primary',
   secondary = 'secondary',
   terciarity = 'terciarity',
@@ -11,5 +11,11 @@ export enum StatusGeneral {
   warning = 'warning',
   danger = 'danger',
   dark = 'dark',
+
+}
+
+export {
+  MessageStatus,
+  StatusGeneral,
 
 }

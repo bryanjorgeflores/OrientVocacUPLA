@@ -50,30 +50,11 @@
   font-weight: 600;
 }
 
-.card .details .content h2 span {
+.card .details .content span {
   font-size: 14px;
   color: #777;
 }
 
-.card .details .content ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.card .details .content ul li {
-  list-style: none;
-  margin-left: 2px;
-}
-
-.card .details .content ul li a {
-  color:#fff;
-  border: none;
-}
-
-.card .details .content ul li:nth-child(1) a {
-  background: #3b5995;
-}
 
 .card .details .content a {
   display: inline-block;
@@ -83,6 +64,11 @@
   border: 2px solid #262626;
   color: #262626;
   font-weight: 500;
+}
+
+.card .details .content a:hover {
+  background-color: #262626;
+  color: #fff;
 }
 
 @media (max-width:1200px) {

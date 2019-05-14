@@ -11,34 +11,49 @@ import { User } from 'src/interfaces/models/user.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  dataLogin: DataLogin = {
-    id: '455454',
-    password: '555'
-  };
+  dataLogin: DataLogin;
 
-  labelIdLogin: MessageStatus = {
-    message: 'Usuario', status: StatusGeneral.dark
-  };
-  labelPswLogin: MessageStatus = {
-    message: 'Password', status: StatusGeneral.dark
-  };
-  
+  labelIdLogin: MessageStatus;
+  labelPswLogin: MessageStatus;
+
   constructor(
     private router: Router,
     private userPostProvider: UserPostProvider,
 
-  ) { }
+  ) {
+    this.dataLogin = {
+      id: '',
+      password: ''
+    };
 
-  ngOnInit() {
+    this.labelIdLogin = {
+      message: 'Usuario:', status: StatusGeneral.dark
+    };
+    this.labelPswLogin = {
+      message: 'Contraseña:', status: StatusGeneral.dark
+    };
 
   }
 
-  login() {
+  ngOnInit() {
+  }
 
-    if (this.dataLogin.id.length >= 8 && this.dataLogin.password.length >= 6) {
+  login() {
+    if (this.dataLogin.id.length < 8) {
+      this.labelIdLogin = {
+        message: 'Usuario: ⚠️', status: StatusGeneral.warning
+      };
+
+    } else if (this.dataLogin.password.length < 6) {
+      this.labelPswLogin = {
+        message: 'Constraseña: ⚠️', status: StatusGeneral.warning
+      };
+
+    } else {
       this.userPostProvider.postDataForLogin(this.dataLogin)
         .subscribe(
           (userToken: User) => {
+            console.log(userToken);
             localStorage.setItem('usertoken', JSON.stringify(userToken));
             localStorage.setItem('typeuser', userToken.type);
 
@@ -47,21 +62,21 @@ export class LoginComponent implements OnInit {
 
             if (userToken.type === 'student') {
               this.router.navigateByUrl('/evaluations');
-            } else {
+
+            } else if (userToken.type === 'administrator') {
               this.router.navigateByUrl('/colleges');
             }
-          }, 
+          },
           (err) => {
-            return alert(err.error.test);
+            this.labelIdLogin = {
+              message: 'Usuario:', status: StatusGeneral.dark
+            };
+            this.labelPswLogin = {
+              message: 'Constraseña:️', status: StatusGeneral.dark
+            };
+            return alert(err.error.text);
           }
-        )
-    } else {
-      this.labelIdLogin = {
-        message: 'Usuario ⚠️', status: StatusGeneral.warning
-      }
-      this.labelPswLogin = {
-        message: 'Password ⚠️', status: StatusGeneral.warning
-      }
+        );
     }
 
   }
