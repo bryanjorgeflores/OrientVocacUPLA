@@ -1,5 +1,5 @@
 <div class="container" style="padding-top:66px;">
-  <div class="card" *ngFor="let test of tests">
+  <div class="card" *ngFor="let test of tests; let i = index;">
     <div class="imgBx">
       <img src="{{test.src}}" alt="Imagen de tipo de Test" />
     </div>
@@ -9,14 +9,14 @@
         <span>{{test.detalle}}</span>
         <div class="py-3"></div>
         <a class="pl-4 pr-4" routerLink="/evaluation">Ingresar</a>
-        <div class="progress blue">
+        <div class="progress {{test.color}}">
           <span class="progress-left">
-            <span class="progress-bar"></span>
+            <span class="progress-bar" id='progress-bar-left-{{i}}'></span>
           </span>
           <span class="progress-right">
-            <span class="progress-bar"></span>
+            <span class="progress-bar" id="progress-bar-right-{{i}}"></span>
           </span>
-          <div class="progress-value">90%</div>
+          <div class="progress-value">{{test.porcentaje}}%</div>
         </div>
       </div>
     </div>
