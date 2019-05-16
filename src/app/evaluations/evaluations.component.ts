@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Encuesta } from 'src/interfaces/encuestas';
+import { animateProgressBar } from 'src/config/styles.config/evaluations.style.config';
 
 @Component({
   selector: 'app-evaluations',
@@ -38,30 +39,6 @@ export class EvaluationsComponent implements OnInit {
 
   }
 
-  /* Para el selector de Fill Forward 
-  statusFinalRotate(select: any, valueRotate: number) {
-    select.style.transform = `rotate(${valueRotate * 3.6}deg)`
-  }
-  
-  * Su Ejecucion.
-  setTimeout(() => {
-        this.statusFinalRotate(select, valueRotate);
-      }, delay + 1000);
-  */
-
-  animateProgressBar(select: any, valueRotate: number, delay: number) {
-    select.animate([
-      { transform: 'rotate(0deg)' },
-      { transform: `rotate(${valueRotate * 3.6}deg)` },
-    ], {
-        delay,
-        duration: 1000,
-        fill: 'forwards'
-      }
-    );
-
-  }
-
 
   ngAfterViewInit() {
     for (let i = 0; i < this.tests.length; i++) {
@@ -70,14 +47,14 @@ export class EvaluationsComponent implements OnInit {
 
       if (valueProgressRight > 50) {
         valueProgressLeft = valueProgressRight - 50;
-        valueProgressRight -= valueProgressLeft;
+        valueProgressRight = 50;
       }
 
       let selectProgressBarLeft = document.getElementById(`progress-bar-left-${i}`);
       let selectProgressBarRight = document.getElementById(`progress-bar-right-${i}`);
 
-      this.animateProgressBar(selectProgressBarLeft, valueProgressLeft, 1000);
-      this.animateProgressBar(selectProgressBarRight, valueProgressRight, 0);
+      animateProgressBar(selectProgressBarLeft, valueProgressLeft, 1000);
+      animateProgressBar(selectProgressBarRight, valueProgressRight, 0);
     }
 
   }

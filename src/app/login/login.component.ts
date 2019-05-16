@@ -4,6 +4,7 @@ import { DataLogin } from 'src/interfaces/data-login.inteface';
 import { MessageStatus, StatusGeneral } from 'src/interfaces/input-status.interface';
 import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
 import { User } from 'src/interfaces/models/user.model';
+import { setStyleDefault } from 'src/config/styles.config/navbar.style.config';
 
 @Component({
   selector: 'app-login',
@@ -57,8 +58,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('usertoken', JSON.stringify(userToken));
             localStorage.setItem('typeuser', userToken.type);
 
-            document.getElementById('navbar').style.display = '';
-            document.body.style.background = '#262626';
+            setStyleDefault();
 
             if (userToken.type === 'student') {
               this.router.navigateByUrl('/evaluations');

@@ -7,6 +7,7 @@ import { CollegeGetProvider } from 'src/providers/get.providers/college.get.prov
 import { User } from 'src/interfaces/models/user.model';
 import { College } from 'src/interfaces/models/college.model';
 import { entryPasswordRequirements } from 'src/config/constants.config/register.constant.config';
+import { setStyleDefault } from 'src/config/styles.config/navbar.style.config';
 
 @Component({
   selector: 'app-register',
@@ -79,9 +80,8 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           (user: User) => {
             localStorage.setItem('usertoken', JSON.stringify(user));
-            
-            document.getElementById('navbar').style.display = '';
-            document.body.style.background = '#262626';
+
+            setStyleDefault();
 
             this.router.navigateByUrl('/evaluations')
           },

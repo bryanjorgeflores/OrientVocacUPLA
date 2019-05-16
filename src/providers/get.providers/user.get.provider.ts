@@ -18,4 +18,8 @@ export class UserGetProvider {
   getStudentsByCollege(idCollege: string): Observable<Array<User>> {
     return this.http.get<Array<User>>(`${URL}/college/students/${idCollege}`);
   }
+
+  getStudents(inputSeachStudent: string): Observable<Array<User>> {
+    return this.http.get<Array<User>>(`${URL}/users/${inputSeachStudent}`);
+  }
 }

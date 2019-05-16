@@ -1,6 +1,6 @@
 // Modal
 
-.modal-user, .modal-header, .modal-body, .modal-footer {
+.modal-user, .modal-header, .modal-footer {
   background-color: #262626;
   border: solid 1px #428BFF;
 }
@@ -112,7 +112,7 @@ $content-selector: "~ .content > section";
           display: none;
         }
         
-        svg {
+        img {
           fill: $secondary;
           height: 1.2em;
           vertical-align: bottom;
@@ -125,7 +125,7 @@ $content-selector: "~ .content > section";
         &:active {
           outline: 0;
           color: lighten($secondary, 15%);
-          svg {
+          img {
             fill: lighten($secondary, 15%);
           }
         }
@@ -179,7 +179,6 @@ $content-selector: "~ .content > section";
       }
     }
   }
-
   
   input[name="tab-control"] {
     @include tabs {
@@ -187,7 +186,7 @@ $content-selector: "~ .content > section";
         cursor: default;
         color: $accent;
         
-        svg {
+        img {
           fill: $accent;
         }
         
@@ -221,7 +220,7 @@ $content-selector: "~ .content > section";
         display: none;
       }
       
-      svg {
+      img {
         height: 1.5em;
       }
     }
@@ -248,4 +247,35 @@ $content-selector: "~ .content > section";
       }
     }
   }
+}
+
+.table {
+  margin-bottom: 16px;
+  background-color: transparent;
+}
+
+.table thead tr th {
+  font-size: 17px ;
+  font-weight: 300;
+}
+
+.table > thead > tr > th {
+  padding: 12px 8px;
+  vertical-align: middle;
+  border-color: #ddd;
+  font-weight: 300;
+}
+
+.table > tbody > tr > td {
+  padding: 12px 8px;
+  vertical-align: middle;
+  border-color: #ddd;
+  font-weight: 300;
+  font-size:14px;
+  color: #3c4858;
+}
+
+.table .td-actions .btn {
+  margin: 0;
+  padding: 5px;
 }
