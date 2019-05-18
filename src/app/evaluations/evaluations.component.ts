@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Encuesta } from 'src/interfaces/encuestas';
-import { animateProgressBar } from 'src/config/styles.config/evaluations.style.config';
+import { animateProgressBar } from 'src/config/dom.config/evaluations.dom.config';
 
 @Component({
   selector: 'app-evaluations',

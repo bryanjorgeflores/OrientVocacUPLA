@@ -3,20 +3,20 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { College } from 'src/interfaces/models/college.model';
+import { School } from 'src/interfaces/models/school.model';
 
 import { URL } from 'src/config/constants.config/http.constant.config';
 
 @Injectable()
 
-export class CollegeGetProvider {
+export class SchoolGetProvider {
   constructor(
     private http: HttpClient,
 
   ) { }
 
-  getColleges(): Observable<Array<College>> {
-    return this.http.get<Array<College>>(`${URL}/college`);
+  getSchools(): Observable<Array<School>> {
+    return this.http.get<Array<School>>(`${URL}/school`);
   }
 
 }

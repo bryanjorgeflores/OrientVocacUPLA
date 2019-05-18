@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./evaluation.component.scss']
 })
 export class EvaluationComponent implements OnInit {
+  
 preguntas: Array<any> = [
   { titulo: 'Pregunta 1', respuesta: 'respuesta 1', opcion1: '1', opcion2: '2' },
   { titulo: 'Pregunta 2', respuesta: 'respuesta 2', opcion1: '1', opcion2: '2' },

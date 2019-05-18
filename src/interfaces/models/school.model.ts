@@ -1,4 +1,4 @@
-export interface College {
+export interface School {
   _id?: string;
   name: string;
   code: string;

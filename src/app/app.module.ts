@@ -14,11 +14,11 @@ import { EvaluationsComponent } from './evaluations/evaluations.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
-import { CollegeComponent } from './college/college.component';
-import { CollegesComponent } from './colleges/colleges.component';
+import { SchoolComponent } from './school/school.component';
+import { SchoolsComponent } from './schools/schools.component';
 
 import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
-import { CollegeGetProvider } from 'src/providers/get.providers/college.get.provider';
+import { SchoolGetProvider } from 'src/providers/get.providers/school.get.provider';
 
 import { StyleGlobalConfig } from 'src/config/globals.config/style.global.config';
 import { UserGetProvider } from 'src/providers/get.providers/user.get.provider';
@@ -32,8 +32,8 @@ import { ResultsComponent } from './results/results.component';
     EvaluationsComponent,
     LoginComponent,
     RegisterComponent,
-    CollegeComponent,
-    CollegesComponent,
+    SchoolComponent,
+    SchoolsComponent,
     EvaluationComponent,
     ResultsComponent,
   ],
@@ -52,7 +52,7 @@ import { ResultsComponent } from './results/results.component';
   providers: [
     UserPostProvider,
     Title,
-    CollegeGetProvider,
+    SchoolGetProvider,
     UserGetProvider,
     StyleGlobalConfig,
     UserGlobalConfig,

@@ -1,7 +1,7 @@
 <div class="login-block">
   <div class="container">
 
-    <div class="row">
+    <div class="row" id="principal">
       <div class="col-md-3"></div>
       <div class="col-md-6 login-sec">
         <h2 class="text-center">Registro de Estudiante</h2>
@@ -18,90 +18,128 @@
             [(ngModel)]="user.name" />
         </div>
         <div class="form-group">
-          <label for="college">Colegio:</label>
-          <select id="college" class="form-control form-control-sm" autocomplete="off" [(ngModel)]="user.college">
-            <option *ngFor="let college of colleges; let i = index;" [value]="college._id">{{college.name | slice:5}}</option>
+          <label for="school">Colegio:</label>
+          <select 
+            id="school" 
+            class="form-control form-control-sm" 
+            [(ngModel)]="schoolIndexSelected">
+            <option 
+              *ngFor="let school of schools; let i = index;" 
+              [value]="i"
+              >{{school.name | slice:5}}
+            </option>
           </select>
         </div>
-        <div>
+        <div class="form-group row">
+          <label class="col-sm-5 col-form-label" for="code">Código Colegio:</label>
+          <div class="col-sm-7">
+            <input 
+              type="text"
+              id="code"
+              class="form-control form-control-sm bg-light"
+              autocomplete="off"
+              placeholder="Código del Colegio"
+              [(ngModel)]="schoolCodeInput" />
+          </div>
         </div>
-        <div class="form-group">
-          <label for="degree">Grado:</label>
-          <select id="degree" class="form-control form-control-sm" [(ngModel)]="user.degree">
-            <option *ngFor="let degree of degrees; let i = index;" [value]="degree">{{degree}}</option>
-          </select>
+        <div class="form-group row">
+          <label class="col-sm-5 col-form-label" for="degree">Grado:</label>
+          <div class="col-sm-7">
+            <select id="degree" class="form-control form-control-sm" [(ngModel)]="user.degree">
+              <option 
+                *ngFor="let degree of degrees; let i = index;" 
+                [value]="degree"
+                >{{degree}}
+              </option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="gender">Género:</label>
-          <select id="gender" class="form-control form-control-sm" [(ngModel)]="user.gender">
-            <option value="male">Masculino</option>
-            <option value="female">Femenino</option>
-          </select>
+        <div class="form-group row">
+          <label class="col-sm-5 col-form-label" for="gender">Género:</label>
+          <div class="col-sm-7">
+            <select id="gender" class="form-control form-control-sm" [(ngModel)]="user.gender">
+              <option value="male">Masculino</option>
+              <option value="female">Femenino</option>
+            </select>
+          </div>
         </div>
         <div class="form-group">
           <label for="career">Carrera de Interés:</label>
           <select id="career" class="form-control form-control-sm" [(ngModel)]="user.career">
-            <option *ngFor="let career of careers; let i = index;" [value]="career">{{career}}</option>
+            <option 
+              *ngFor="let career of careers; let i = index;" 
+              [value]="career"
+              >{{career}}
+            </option>
           </select>
         </div>
+
+        <div class="py-2"></div>
         <div class="form-group">
-          <label for="user">Usuario:</label>
-          <input 
-            type="text"
-            id="user"
-            name="username" 
-            class="form-control form-control-sm" 
-            autocomplete="off"
-            placeholder="Ingrese su usuario" 
-            [(ngModel)]="user.username" />
+            <label for="user">Usuario:</label>
+            <input 
+              type="text"
+              id="user"
+              name="username" 
+              class="form-control form-control-sm bg-light" 
+              autocomplete="off"
+              placeholder="Ingrese su usuario, mayor a 8 caracteres" 
+              [(ngModel)]="user.username" />
         </div>
 
         <div class="form-group">
-          <label for="psw">Contraseña</label>
+          <label for="psw">Contraseña:</label>
           <div class="input-group">
             <input 
               type="{{passwordBlock? 'password': 'text'}}" 
               id="psw"
               name="password"
-              class="form-control" 
+              class="form-control form-control-sm bg-light" 
               aria-describedby="inputGroup-sizing-sm" 
               placeholder="Ingrese Contraseña" 
               [(ngModel)]="user.password"
               (ngModelChange)="checkPassword()" />
-            <div class="input-group-append">
-              <span class="input-group-text" id="inputGroup-sizing-sm" (click)="passwordBlock = !passwordBlock">
-                <img src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico" alt="Icono Ojo" />
+              <span 
+                id="inputGroup-sizing-sm" 
+                class="badge badge-light" 
+                (click)="passwordBlock = !passwordBlock">
+                <img 
+                  src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico" 
+                  alt="Icono Ojo" />
               </span>
-            </div>
+            
           </div>
         </div>
         <div class="form-group">
-          <label for="repsw">Confirmar Contraseña</label>
+          <label for="repsw">Confirmar Contraseña:</label>
           <div class="input-group">
             <input 
               type="{{passwordBlock? 'password': 'text'}}" 
               id="repsw"
               name="repassword"
-              class="form-control"
+              class="form-control form-control-sm bg-light"
               aria-describedby="inputGroup-sizing-sm" 
               placeholder="Repita Contraseña" 
               [(ngModel)]="repeatedPassword"
               (ngModelChange)="checkPassword()" />
-            <div class="input-group-append">
-              <span class="input-group-text" id="inputGroup-sizing-sm" (click)="passwordBlock = !passwordBlock">
-                <img src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico" alt="Icono Ojo" />
+              <span 
+                id="inputGroup-sizing-sm" 
+                class="badge badge-light" 
+                (click)="passwordBlock = !passwordBlock">
+                <img 
+                  src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico" 
+                  alt="Icono Ojo" />
               </span>
-            </div>
           </div>
         </div>
         
-        <div class="py-3"></div>
+        <div class="py-1"></div>
 
         <ul class="list-group">
         <label>Requisitos de Contraseña:</label>
           <li 
             *ngFor="let passwordRequirement of passwordRequirements"
-            class="list-group-item d-flex justify-content-between align-items-center">
+            class="list-group-item d-flex justify-content-between align-items-center p-2 small">
             {{passwordRequirement.message}}
             <span class="badge badge-{{passwordRequirement.condition? 'success' : 'danger'}} badge-pill">
               {{passwordRequirement.condition? '✔' : '✘'}}

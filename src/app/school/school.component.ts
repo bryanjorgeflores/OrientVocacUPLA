@@ -5,11 +5,11 @@ import { User } from 'src/interfaces/models/user.model';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 
 @Component({
-  selector: 'app-college',
-  templateUrl: './college.component.html',
-  styleUrls: ['./college.component.scss']
+  selector: 'app-school',
+  templateUrl: './school.component.html',
+  styleUrls: ['./school.component.scss']
 })
-export class CollegeComponent implements OnInit {
+export class SchoolComponent implements OnInit {
   students: Array<User>;
   constructor(
     public userGlobalConfig: UserGlobalConfig,
@@ -17,7 +17,7 @@ export class CollegeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.students = this.userGlobalConfig.studentsByCollege;
+    this.students = this.userGlobalConfig.studentsBySchool;
   }
 
 }

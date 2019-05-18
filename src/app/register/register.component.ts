@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
-import { CollegeGetProvider } from 'src/providers/get.providers/college.get.provider';
+import { SchoolGetProvider } from 'src/providers/get.providers/school.get.provider';
 
 import { User } from 'src/interfaces/models/user.model';
-import { College } from 'src/interfaces/models/college.model';
+import { School } from 'src/interfaces/models/school.model';
 import { entryPasswordRequirements } from 'src/config/constants.config/register.constant.config';
-import { setStyleDefault } from 'src/config/styles.config/navbar.style.config';
+import { setStyleDefault } from 'src/config/dom.config/navbar.dom.config';
 
 @Component({
   selector: 'app-register',
@@ -15,49 +15,61 @@ import { setStyleDefault } from 'src/config/styles.config/navbar.style.config';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  user: User = {
-    username: '',
-    password: '',
-    name: '',
-    college: '',
-    degree: '',
-    gender: '',
-    career: '',
+  user: User;
 
-  };
+  schools: Array<School>;
+  schoolIndexSelected: number;
+  schoolCodeSelected: string;
+  schoolCodeInput: string;
+
+  degrees: Array<string>;
+
+  careers: Array<string>;
 
   passwordRequirements: Array<any>;
-  repeatedPassword: string = '';
-  passwordBlock: boolean = true;
-
-  colleges: Array<College>;
-
-  degrees: Array<string> = ['Tercer Grado', 'Cuarto Grado', 'Quinto Grado'];
-
-  careers: Array<string> = [
-    'Ingenieria',
-    'Medicina',
-    'Arquitecura',
-    'Contabilidad',
-    'Docencia'
-  ];
-
-
-
+  repeatedPassword: string;
+  passwordBlock: boolean;
 
   constructor(
     private userPostProvider: UserPostProvider,
-    private collegeGetProvider: CollegeGetProvider,
+    private schoolGetProvider: SchoolGetProvider,
     private router: Router,
 
-  ) { }
+  ) { 
+
+    this.user = {
+      username: '',
+      password: '',
+      name: '',
+      school: '',
+      degree: '',
+      gender: '',
+      career: '',
+  
+    };
+
+    this.schoolIndexSelected = 0;
+    this.schoolCodeSelected = '';
+    this.schoolCodeInput = '';
+    this.degrees = ['Tercer Grado', 'Cuarto Grado', 'Quinto Grado'];
+    this.careers = [
+      'Ingenieria',
+      'Medicina',
+      'Arquitecura',
+      'Contabilidad',
+      'Docencia',
+
+    ];
+    this.repeatedPassword = '';
+    this.passwordBlock = true;
+  }
 
   ngOnInit() {
-    this.collegeGetProvider.getColleges()
+    this.schoolGetProvider.getSchools()
       .subscribe(
-        (colleges: Array<College>) => {
-          colleges.sort();
-          this.colleges = colleges;
+        (schools: Array<School>) => {
+          schools.sort();
+          this.schools = schools;
         },
         (err) => alert(err.error.text)
       );
@@ -65,17 +77,24 @@ export class RegisterComponent implements OnInit {
     this.passwordRequirements = entryPasswordRequirements(this.user.password, this.repeatedPassword);
   }
 
-
   checkPassword(): void {
     this.passwordRequirements = entryPasswordRequirements(this.user.password, this.repeatedPassword);
   }
 
   registerUser(): void {
+    this.schoolCodeSelected = this.schools[this.schoolIndexSelected].code;
+    
+    if (this.schoolCodeSelected != this.schoolCodeInput) {
+      alert('El Código del Colegio es Incorrecto!!');
+      return;
+    }
+
+    this.user.school = this.schools[this.schoolIndexSelected]._id;
 
     let checkPasswordRequirements: any = this.passwordRequirements.find(
       (passwordRequirement: any) => passwordRequirement.condition === false);
 
-    if (checkPasswordRequirements === undefined) {
+    if (checkPasswordRequirements === undefined && this.user.username.length >= 8) {
       this.userPostProvider.postUserToRegister(this.user)
         .subscribe(
           (user: User) => {
@@ -88,7 +107,7 @@ export class RegisterComponent implements OnInit {
           (err) => alert(err.error.text)
         );
     } else {
-      return alert('Verificar Contraseña');
+      return alert('Verificar Usuario o Contraseña');
     }
   }
 

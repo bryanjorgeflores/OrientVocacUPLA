@@ -15,8 +15,8 @@ export class UserGetProvider {
 
   ) { }
 
-  getStudentsByCollege(idCollege: string): Observable<Array<User>> {
-    return this.http.get<Array<User>>(`${URL}/college/students/${idCollege}`);
+  getStudentsBySchool(idSchool: string): Observable<Array<User>> {
+    return this.http.get<Array<User>>(`${URL}/school/students/${idSchool}`);
   }
 
   getStudents(inputSeachStudent: string): Observable<Array<User>> {

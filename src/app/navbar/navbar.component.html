@@ -1,4 +1,7 @@
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed;width:100%;z-index:2;"
+<nav 
+  id="navbar" 
+  class="navbar navbar-expand-lg navbar-dark bg-dark" 
+  style="position:fixed;width:100%;z-index:2;"
   *ngIf="render">
   <div class="tabs">
     <input type="radio" id="tab1" name="tab-control">
@@ -15,7 +18,7 @@
       </li>
 
 
-      <li (click)="goTo('/colleges')">
+      <li (click)="goTo('/schools')">
         <label for="tab2" role="button">
           <img src="assets/icons.assets/book.ico" width="24" height="24" alt="Icono Libro" />
           <br />
@@ -63,17 +66,17 @@
                 <th class="text-center">Evaluaciones</th>
               </tr>
             </thead>
+            <tbody>
+              <tr *ngFor="let student of students; let i = index;">
+                <td class="text-center">{{student._id}}</td>
+                <td class="text-center">{{student.name}}</td>
+                <td class="text-center">{{student.degree}}</td>
+                <td class="text-center">{{student.gender}}</td>
+                <td class="text-center">{{student.career}}</td>
+                <td class="text-center">{{student.evaluation}}</td>
+              </tr>
+            </tbody>
           </table>
-          <tbody>
-            <tr *ngFor="let student of students; let i = index">
-              <td class="text-center">{{student._id}}</td>
-              <td class="text-center">{{student.name}}</td>
-              <td class="text-center">{{student.degree}}</td>
-              <td class="text-center">{{student.gender}}</td>
-              <td class="text-center">{{student.career}}</td>
-              <td class="text-center">{{student.evaluation}}</td>
-            </tr>
-          </tbody>
         </div>
       </div>
       <div class="modal-footer">

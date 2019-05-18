@@ -4,7 +4,7 @@ export interface User {
   password: string;
   name: string;
   type?: string;
-  college: string;
+  school: string;
   degree: string;
   gender: string;
   career: string;

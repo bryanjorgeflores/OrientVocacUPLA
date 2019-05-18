@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { setStyleHidden } from 'src/config/styles.config/navbar.style.config';
+import { setStyleHidden } from 'src/config/dom.config/navbar.dom.config';
 import { User } from 'src/interfaces/models/user.model';
 import { UserGetProvider } from 'src/providers/get.providers/user.get.provider';
 

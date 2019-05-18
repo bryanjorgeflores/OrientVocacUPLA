@@ -20,17 +20,17 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let college of colleges; let i = index">
-              <td class="text-center">{{college._id}}</td>
-              <td class="text-center">{{college.name}}</td>
-              <td class="text-center">{{college.location}}</td>
-              <td class="text-center">{{college.code}}</td>
-              <td class="text-center">{{college.acronym}}</td>
-              <td class="text-center">{{college.total}}</td>
+            <tr *ngFor="let school of schools; let i = index;">
+              <td class="text-center">{{school._id}}</td>
+              <td class="text-center">{{school.name}}</td>
+              <td class="text-center">{{school.location}}</td>
+              <td class="text-center">{{school.code}}</td>
+              <td class="text-center">{{school.acronym}}</td>
+              <td class="text-center">{{school.total}}</td>
 
               <td class="td-actions text-center">
                 <button rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm"
-                  (click)="goToStudentsByCollege(college)">
+                  (click)="goToStudentsBySchool(school)">
                   <i class="material-icons">X</i>
                 </button>
               </td>
