@@ -7,8 +7,10 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
 import { SchoolComponent } from './school/school.component';
 import { SchoolsComponent } from './schools/schools.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'evaluations', component: EvaluationsComponent },
   { path: 'register', component: RegisterComponent },
@@ -16,7 +18,7 @@ const routes: Routes = [
   { path: 'evaluation', component: EvaluationComponent },
   { path: 'school', component: SchoolComponent },
   { path: 'navbar', component: NavbarComponent },
-  { path: '', pathMatch: 'prefix', redirectTo: 'evaluations' },
+  { path: '**', component: PageNotFoundComponent  }
 
 ];
 

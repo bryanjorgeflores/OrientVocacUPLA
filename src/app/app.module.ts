@@ -24,6 +24,8 @@ import { StyleGlobalConfig } from 'src/config/globals.config/style.global.config
 import { UserGetProvider } from 'src/providers/get.providers/user.get.provider';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 import { ResultsComponent } from './results/results.component';
+import { UserSearchComponent } from './modals/user-search/user-search.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,9 @@ import { ResultsComponent } from './results/results.component';
     SchoolsComponent,
     EvaluationComponent,
     ResultsComponent,
+    UserSearchComponent,
+    PageNotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,

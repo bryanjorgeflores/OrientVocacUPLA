@@ -8,9 +8,14 @@ let setStyleHidden = (): void => {
   document.getElementById('navbar').style.display = 'none';
 };
 
+let setStyleBody = (backgroundColor: string): void => {
+  document.body.style.background = backgroundColor;
+}
+
 
 export {
   setStyleDefault,
   setStyleHidden,
+  setStyleBody
 
 }

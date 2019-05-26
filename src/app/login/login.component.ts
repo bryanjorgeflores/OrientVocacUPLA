@@ -4,7 +4,7 @@ import { DataLogin } from 'src/interfaces/data-login.inteface';
 import { MessageStatus, StatusGeneral } from 'src/interfaces/input-status.interface';
 import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
 import { User } from 'src/interfaces/models/user.model';
-import { setStyleDefault } from 'src/config/dom.config/navbar.dom.config';
+import { setStyleDefault, setStyleHidden } from 'src/config/dom.config/navbar.dom.config';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    setStyleHidden();
   }
 
   login() {

@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { setStyleHidden } from 'src/config/dom.config/navbar.dom.config';
-import { User } from 'src/interfaces/models/user.model';
-import { UserGetProvider } from 'src/providers/get.providers/user.get.provider';
 
 
 @Component({
@@ -15,57 +12,33 @@ import { UserGetProvider } from 'src/providers/get.providers/user.get.provider';
 export class NavbarComponent implements OnInit {
   styleNavBar: any;
   render: boolean;
-  students: Array<User>;
-  inputSeachStudent: string;
 
   constructor(
     private titleService: Title,
     private router: Router,
     private modalService: NgbModal,
-    private userGetProvider: UserGetProvider,
     
   ) { 
     this.styleNavBar = {};
     this.render = true;
-    this.students = [];
-    this.inputSeachStudent = '';
+
   }
 
   ngOnInit() {
     this.render = true;
   }
 
-  
-
   toggleNavbar() {
   }
 
-  goTo(componentDIR: string): void {
-    if (componentDIR === '/login') {
-      setStyleHidden();
-    } 
+  openBarSearchStudents(content: any): void {
+    this.modalService.open(content, { size: 'lg' });
 
+  }
+
+  goTo(componentDIR: string): void {
     this.titleService.setTitle(componentDIR);
     this.router.navigateByUrl(componentDIR);
-  }
-
-
-  OpenBarsearchStudents(content: any): void {
-    this.modalService.open(content, { size: 'lg' });
-  }
-
-  searchStudents(): void {
-
-    if (this.inputSeachStudent.length >= 3) {
-      this.userGetProvider.getStudents(this.inputSeachStudent)
-        .subscribe(
-          (students: Array<User>) => this.students = students,
-          (err) => alert(err.error.text)
-        );
-    } else {
-      alert('Se Requere más de Tres Caracteres');
-      return;
-    }
   }
 
 }
