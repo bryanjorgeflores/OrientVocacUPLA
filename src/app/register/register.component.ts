@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     private schoolGetProvider: SchoolGetProvider,
     private router: Router,
 
-  ) { 
+  ) {
 
     this.user = {
       username: '',
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
       degree: '',
       gender: '',
       career: '',
-  
+
     };
 
     this.schoolIndexSelected = 0;
@@ -83,15 +83,15 @@ export class RegisterComponent implements OnInit {
 
   registerUser(): void {
     this.schoolCodeSelected = this.schools[this.schoolIndexSelected].code;
-    
-    if (this.schoolCodeSelected != this.schoolCodeInput) {
+
+    if (this.schoolCodeSelected !== this.schoolCodeInput) {
       alert('El Código del Colegio es Incorrecto!!');
       return;
     }
 
     this.user.school = this.schools[this.schoolIndexSelected]._id;
 
-    let checkPasswordRequirements: any = this.passwordRequirements.find(
+    const checkPasswordRequirements: any = this.passwordRequirements.find(
       (passwordRequirement: any) => passwordRequirement.condition === false);
 
     if (checkPasswordRequirements === undefined && this.user.username.length >= 8) {
@@ -102,7 +102,7 @@ export class RegisterComponent implements OnInit {
 
             setStyleDefault();
 
-            this.router.navigateByUrl('/evaluations')
+            this.router.navigateByUrl('/evaluations');
           },
           (err) => alert(err.error.text)
         );

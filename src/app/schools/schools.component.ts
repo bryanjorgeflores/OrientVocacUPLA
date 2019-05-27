@@ -29,10 +29,15 @@ export class SchoolsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (localStorage.getItem('usertoken') === null) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
     this.schoolGetProvider.getSchools()
       .subscribe((schools: Array<School>) => {
         this.schools = schools;
-      })
+      });
   }
 
   goToStudentsBySchool(school: School): void {

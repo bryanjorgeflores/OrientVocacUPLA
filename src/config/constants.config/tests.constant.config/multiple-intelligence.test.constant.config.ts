@@ -71,8 +71,5 @@ let multipleIntelligenceQuestions: Array<string> = [
   'Soy de los que piensa, que todos somos iguales y no desmerezco a nadie',
   'Considero que soy una persona completamente honesta conmigo misma',
   'Amo la naturaleza, sus ríos, montañas, valles y lagos',
-  
+
 ];
-
-
-

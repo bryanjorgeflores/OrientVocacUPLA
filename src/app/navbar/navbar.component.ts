@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { NavbarItem } from 'src/interfaces/navbar-item.interface';
+import { StudentNavbarItems, AdministratorNavbarItems } from 'src/services/navbar-item.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,20 +15,38 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class NavbarComponent implements OnInit {
   styleNavBar: any;
   render: boolean;
+  typeUser: string;
+
+  navbarItems: Array<NavbarItem>;
 
   constructor(
     private titleService: Title,
     private router: Router,
     private modalService: NgbModal,
-    
-  ) { 
+
+  ) {
     this.styleNavBar = {};
     this.render = true;
 
   }
 
   ngOnInit() {
-    this.render = true;
+    if (localStorage.getItem('usertoken') === null) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    this.typeUser = localStorage.getItem('typeuser');
+
+    switch (this.typeUser) {
+      case 'student':
+        this.navbarItems = StudentNavbarItems;
+        break;
+      case 'administrator':
+        this.navbarItems = AdministratorNavbarItems;
+        break;
+    }
+
   }
 
   toggleNavbar() {
@@ -39,6 +60,11 @@ export class NavbarComponent implements OnInit {
   goTo(componentDIR: string): void {
     this.titleService.setTitle(componentDIR);
     this.router.navigateByUrl(componentDIR);
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigateByUrl('/login');
   }
 
 }

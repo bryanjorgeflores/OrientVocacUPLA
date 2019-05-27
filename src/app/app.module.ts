@@ -6,7 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -40,7 +40,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ResultsComponent,
     UserSearchComponent,
     PageNotFoundComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     UserGetProvider,
     StyleGlobalConfig,
     UserGlobalConfig,
-    
 
   ],
   bootstrap: [AppComponent]

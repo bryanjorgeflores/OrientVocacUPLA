@@ -18,4 +18,4 @@ export {
   MessageStatus,
   StatusGeneral,
 
-}
+};

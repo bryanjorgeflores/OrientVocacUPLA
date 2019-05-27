@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    setStyleHidden();
+    setStyleHidden('rgb(111, 98, 227)');
   }
 
   login() {

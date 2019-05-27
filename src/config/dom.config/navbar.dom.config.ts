@@ -1,16 +1,17 @@
-let setStyleDefault = (): void => {
+const setStyleDefault = (): void => {
   document.getElementById('navbar').style.display = '';
   document.body.style.background = '#262626';
 };
 
-let setStyleHidden = (): void => {
-  document.body.style.background = 'rgb(111, 98, 227)';
+// 'rgb(111, 98, 227)'
+const setStyleHidden = (backgroundColor: string): void => {
+  document.body.style.background = backgroundColor;
   document.getElementById('navbar').style.display = 'none';
 };
 
-let setStyleBody = (backgroundColor: string): void => {
+const setStyleBody = (backgroundColor: string): void => {
   document.body.style.background = backgroundColor;
-}
+};
 
 
 export {
@@ -18,4 +19,4 @@ export {
   setStyleHidden,
   setStyleBody
 
-}
+};

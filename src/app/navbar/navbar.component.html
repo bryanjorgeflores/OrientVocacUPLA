@@ -1,6 +1,6 @@
-<nav 
-  id="navbar" 
-  class="navbar navbar-expand-lg navbar-dark bg-dark" 
+<nav
+  id="navbar"
+  class="navbar navbar-expand-lg navbar-dark bg-dark"
   style="position:fixed;width:100%;z-index:2;"
   *ngIf="render">
 
@@ -9,7 +9,7 @@
     <input type="radio" id="tab2" name="tab-control">
     <input type="radio" id="tab3" name="tab-control">
     <input type="radio" id="tab4" name="tab-control">
-    <ul>
+    <ul *ngIf="typeUser === 'student'">
       <li (click)="goTo('/evaluations')">
         <label for="tab1" role="button">
           <img src="assets/icons.assets/book.ico" width="24" height="24" alt="Icono Libro" />
@@ -17,7 +17,6 @@
           <span>Inicio</span>
         </label>
       </li>
-
 
       <li (click)="goTo('/schools')">
         <label for="tab2" role="button">
@@ -35,7 +34,7 @@
         </label>
       </li>
 
-      <li (click)="goTo('/login')">
+      <li (click)="logout()">
         <label for="tab4" role="button">
           <img src="assets/icons.assets/book.ico" width="20" height="24" alt="Icono Libro" />
           <br />
@@ -43,6 +42,7 @@
         </label>
       </li>
     </ul>
+
 
     <ng-template #content let-modal class="modal-user">
       <app-user-search></app-user-search>

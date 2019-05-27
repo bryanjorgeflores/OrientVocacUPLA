@@ -17,7 +17,6 @@ const routes: Routes = [
   { path: 'schools', component: SchoolsComponent },
   { path: 'evaluation', component: EvaluationComponent },
   { path: 'school', component: SchoolComponent },
-  { path: 'navbar', component: NavbarComponent },
   { path: '**', component: PageNotFoundComponent  }
 
 ];
