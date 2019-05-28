@@ -2,29 +2,32 @@
   <div class="container">
 
     <div class="row" id="principal">
-      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <div class="py-3"></div>
+        <button class="btn btn-outline-light" (click)="goToLogin()">Regresar</button>
+      </div>
       <div class="col-md-6 login-sec">
         <h2 class="text-center">Registro de Estudiante</h2>
-         
+
         <div class="form-group">
           <label for="name">Nombres Completos:</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            class="form-control form-control-sm" 
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control form-control-sm"
             placeholder="Ingrese Nombres Completos"
-            autocomplete="off" 
+            autocomplete="off"
             [(ngModel)]="user.name" />
         </div>
         <div class="form-group">
           <label for="school">Colegio:</label>
-          <select 
-            id="school" 
-            class="form-control form-control-sm" 
+          <select
+            id="school"
+            class="form-control form-control-sm"
             [(ngModel)]="schoolIndexSelected">
-            <option 
-              *ngFor="let school of schools; let i = index;" 
+            <option
+              *ngFor="let school of schools; let i = index;"
               [value]="i"
               >{{school.name | slice:5}}
             </option>
@@ -33,7 +36,7 @@
         <div class="form-group row">
           <label class="col-sm-5 col-form-label" for="code">Código Colegio:</label>
           <div class="col-sm-7">
-            <input 
+            <input
               type="text"
               id="code"
               class="form-control form-control-sm bg-light"
@@ -46,8 +49,8 @@
           <label class="col-sm-5 col-form-label" for="degree">Grado:</label>
           <div class="col-sm-7">
             <select id="degree" class="form-control form-control-sm" [(ngModel)]="user.degree">
-              <option 
-                *ngFor="let degree of degrees; let i = index;" 
+              <option
+                *ngFor="let degree of degrees; let i = index;"
                 [value]="degree"
                 >{{degree}}
               </option>
@@ -66,8 +69,8 @@
         <div class="form-group">
           <label for="career">Carrera de Interés:</label>
           <select id="career" class="form-control form-control-sm" [(ngModel)]="user.career">
-            <option 
-              *ngFor="let career of careers; let i = index;" 
+            <option
+              *ngFor="let career of careers; let i = index;"
               [value]="career"
               >{{career}}
             </option>
@@ -77,67 +80,67 @@
         <div class="py-2"></div>
         <div class="form-group">
             <label for="user">Usuario:</label>
-            <input 
+            <input
               type="text"
               id="user"
-              name="username" 
-              class="form-control form-control-sm bg-light" 
+              name="username"
+              class="form-control form-control-sm bg-light"
               autocomplete="off"
-              placeholder="Ingrese su usuario, mayor a 8 caracteres" 
+              placeholder="Ingrese su usuario, mayor a 8 caracteres"
               [(ngModel)]="user.username" />
         </div>
 
         <div class="form-group">
           <label for="psw">Contraseña:</label>
           <div class="input-group">
-            <input 
-              type="{{passwordBlock? 'password': 'text'}}" 
+            <input
+              type="{{passwordBlock? 'password': 'text'}}"
               id="psw"
               name="password"
-              class="form-control form-control-sm bg-light" 
-              aria-describedby="inputGroup-sizing-sm" 
-              placeholder="Ingrese Contraseña" 
+              class="form-control form-control-sm bg-light"
+              aria-describedby="inputGroup-sizing-sm"
+              placeholder="Ingrese Contraseña"
               [(ngModel)]="user.password"
               (ngModelChange)="checkPassword()" />
-              <span 
-                id="inputGroup-sizing-sm" 
-                class="badge badge-light" 
+              <span
+                id="inputGroup-sizing-sm"
+                class="badge badge-light"
                 (click)="passwordBlock = !passwordBlock">
-                <img 
-                  src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico" 
+                <img
+                  src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico"
                   alt="Icono Ojo" />
               </span>
-            
+
           </div>
         </div>
         <div class="form-group">
           <label for="repsw">Confirmar Contraseña:</label>
           <div class="input-group">
-            <input 
-              type="{{passwordBlock? 'password': 'text'}}" 
+            <input
+              type="{{passwordBlock? 'password': 'text'}}"
               id="repsw"
               name="repassword"
               class="form-control form-control-sm bg-light"
-              aria-describedby="inputGroup-sizing-sm" 
-              placeholder="Repita Contraseña" 
+              aria-describedby="inputGroup-sizing-sm"
+              placeholder="Repita Contraseña"
               [(ngModel)]="repeatedPassword"
               (ngModelChange)="checkPassword()" />
-              <span 
-                id="inputGroup-sizing-sm" 
-                class="badge badge-light" 
+              <span
+                id="inputGroup-sizing-sm"
+                class="badge badge-light"
                 (click)="passwordBlock = !passwordBlock">
-                <img 
-                  src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico" 
+                <img
+                  src="assets/icons.assets/eye-password{{passwordBlock? '-block': ''}}.ico"
                   alt="Icono Ojo" />
               </span>
           </div>
         </div>
-        
+
         <div class="py-1"></div>
 
         <ul class="list-group">
         <label>Requisitos de Contraseña:</label>
-          <li 
+          <li
             *ngFor="let passwordRequirement of passwordRequirements"
             class="list-group-item d-flex justify-content-between align-items-center p-2 small">
             {{passwordRequirement.message}}
@@ -146,7 +149,7 @@
             </span>
           </li>
         </ul>
-        
+
         <div class="py-3"></div>
 
         <div class="d-flex justify-content-center">

@@ -30,7 +30,7 @@ $content-selector: "~ .content > section";
   $label-selector: $label-selector,
   $slider-selector: $slider-selector,
   $content-selector: $content-selector) {
-    
+
   @for $i from 1 through $tab-count {
     &:nth-of-type(#{$i}):checked {
       #{$label-selector}:nth-child(#{$i}) {
@@ -63,7 +63,7 @@ $content-selector: "~ .content > section";
   input[name="tab-control"] {
     display: none;
   }
-  
+
   .content section h2,
   ul li label {
     font-family: "Montserrat";
@@ -71,7 +71,7 @@ $content-selector: "~ .content > section";
     font-size: 18px;
     color: $accent;
   }
-  
+
   ul {
     list-style-type: none;
     padding-left: 0;
@@ -81,14 +81,14 @@ $content-selector: "~ .content > section";
     justify-content: space-between;
     align-items: flex-end;
     flex-wrap: wrap;
-    
+
     li {
       box-sizing: border-box;
       flex: 1;
       width: #{100%/$tab-count};
       padding: 0 4px;
       text-align: center;
-      
+
       label {
         transition: all 0.3s ease-in-out;
         color: $secondary;
@@ -100,11 +100,11 @@ $content-selector: "~ .content > section";
         transition: all 0.2s ease-in-out;
         white-space: nowrap;
         -webkit-touch-callout: none;
-        
+
         br {
           display: none;
         }
-        
+
         img {
           fill: $secondary;
           height: 1.2em;
@@ -112,7 +112,7 @@ $content-selector: "~ .content > section";
           margin-right: 0.2em;
           transition: all 0.2s ease-in-out;
         }
-        
+
         &:hover,
         &:focus,
         &:active {
@@ -125,7 +125,7 @@ $content-selector: "~ .content > section";
       }
     }
   }
-  
+
   .slider {
     position: relative;
     width: #{100%/$tab-count};
@@ -137,14 +137,14 @@ $content-selector: "~ .content > section";
       margin: 0 auto;
       height: $indicator-height;
       background: $accent;
-      border-radius: 1px;     
+      border-radius: 1px;
     }
 
   }
-  
+
   .content {
     margin-top: 10px;
-    
+
     section {
       display: none;
       animation: {
@@ -155,7 +155,7 @@ $content-selector: "~ .content > section";
         iteration-count: 1;
       }
       line-height: 1.4;
-      
+
       h2 {
         color: $accent;
         display: none;
@@ -172,17 +172,17 @@ $content-selector: "~ .content > section";
       }
     }
   }
-  
+
   input[name="tab-control"] {
     @include tabs {
       > label {
         cursor: default;
         color: $accent;
-        
+
         img {
           fill: $accent;
         }
-        
+
         @media (max-width: map-get($breakpoints, small)) {
           background: rgba(0, 0, 0, 0.08);
         }
@@ -200,11 +200,11 @@ $content-selector: "~ .content > section";
       transform: translateY(0%);
     }
   }
-  
+
   @media (max-width: map-get($breakpoints, medium)) {
     ul li label {
       white-space: initial;
-      
+
       br {
         display: initial;
       }
@@ -212,29 +212,29 @@ $content-selector: "~ .content > section";
       span {
         display: none;
       }
-      
+
       img {
         height: 1.5em;
       }
     }
   }
-  
+
   @media (max-width: map-get($breakpoints, small)) {
     ul li label {
       padding: 5px;
       border-radius: 5px;
-      
+
       span {
         display: none;
       }
     }
-    
+
     .slider {
       display: none;
     }
-    
+
     .content {
-      margin-top: 20px; 
+      margin-top: 20px;
       section h2 {
         display: block;
       }

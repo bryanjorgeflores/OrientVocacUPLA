@@ -5,6 +5,7 @@ import { MessageStatus, StatusGeneral } from 'src/interfaces/input-status.interf
 import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
 import { User } from 'src/interfaces/models/user.model';
 import { setStyleDefault, setStyleHidden } from 'src/config/dom.config/navbar.dom.config';
+import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private userPostProvider: UserPostProvider,
+    private userGlobalConfig: UserGlobalConfig,
 
   ) {
     this.dataLogin = {
@@ -57,7 +59,9 @@ export class LoginComponent implements OnInit {
           (userToken: User) => {
             console.log(userToken);
             localStorage.setItem('usertoken', JSON.stringify(userToken));
+
             localStorage.setItem('typeuser', userToken.type);
+            this.userGlobalConfig.typeUser = userToken.type;
 
             setStyleDefault();
 

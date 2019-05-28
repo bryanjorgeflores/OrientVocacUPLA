@@ -26,6 +26,7 @@ import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 import { ResultsComponent } from './results/results.component';
 import { UserSearchComponent } from './modals/user-search/user-search.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserService } from 'src/services/user.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     UserGetProvider,
     StyleGlobalConfig,
     UserGlobalConfig,
+    UserService,
 
   ],
   bootstrap: [AppComponent]

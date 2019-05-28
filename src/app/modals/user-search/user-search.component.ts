@@ -14,7 +14,7 @@ export class UserSearchComponent implements OnInit {
   constructor(
     private userGetProvider: UserGetProvider,
 
-  ) { 
+  ) {
     this.students = [];
     this.inputSeachStudent = '';
 
@@ -29,7 +29,7 @@ export class UserSearchComponent implements OnInit {
         .subscribe(
           (students: Array<User>) => this.students = students,
           (err) => alert(err.error.text)
-        )
+        );
     } else {
       alert('Se Requiere más de tres caracteres');
       return;

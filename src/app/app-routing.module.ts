@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'schools', component: SchoolsComponent },
   { path: 'evaluation', component: EvaluationComponent },
+  { path: 'navbar', component: NavbarComponent },
   { path: 'school', component: SchoolComponent },
   { path: '**', component: PageNotFoundComponent  }
 

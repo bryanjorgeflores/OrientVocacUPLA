@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Encuesta } from 'src/interfaces/encuestas';
 import { animateProgressBar } from 'src/config/dom.config/evaluations.dom.config';
 import { Router } from '@angular/router';
+import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 
 @Component({
   selector: 'app-evaluations',
@@ -13,6 +14,7 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
+    public userGlobalConfig: UserGlobalConfig,
 
   ) {
 
@@ -23,6 +25,10 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl('/login');
       return;
     }
+
+    console.log('this.userGlobalConfig.typeUser', this.userGlobalConfig.typeUser);
+
+
 
     this.tests = [
       {

@@ -8,6 +8,7 @@ import { User } from 'src/interfaces/models/user.model';
 import { School } from 'src/interfaces/models/school.model';
 import { entryPasswordRequirements } from 'src/config/constants.config/register.constant.config';
 import { setStyleDefault } from 'src/config/dom.config/navbar.dom.config';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit {
     private userPostProvider: UserPostProvider,
     private schoolGetProvider: SchoolGetProvider,
     private router: Router,
+    private location: Location,
 
   ) {
 
@@ -64,6 +66,7 @@ export class RegisterComponent implements OnInit {
     this.passwordBlock = true;
   }
 
+
   ngOnInit() {
     this.schoolGetProvider.getSchools()
       .subscribe(
@@ -75,6 +78,10 @@ export class RegisterComponent implements OnInit {
       );
 
     this.passwordRequirements = entryPasswordRequirements(this.user.password, this.repeatedPassword);
+  }
+
+  goToLogin(): void {
+    this.location.back();
   }
 
   checkPassword(): void {

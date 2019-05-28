@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { setStyleHidden } from 'src/config/dom.config/navbar.dom.config';
-import { Location } from '@angular/common';
+import { setStyleHidden, setStyleDefault } from 'src/config/dom.config/navbar.dom.config';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-page-not-found',
@@ -27,6 +27,7 @@ export class PageNotFoundComponent implements OnInit {
   }
 
   goToBack(): void {
+    setStyleDefault();
     this.location.back();
   }
 

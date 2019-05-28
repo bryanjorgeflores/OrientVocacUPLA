@@ -2,5 +2,6 @@
 export interface NavbarItem {
   icon: string;
   title: string;
-  action: any;
+  action: string;
+  dir: any;
 }

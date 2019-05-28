@@ -1,50 +1,46 @@
 <nav
   id="navbar"
   class="navbar navbar-expand-lg navbar-dark bg-dark"
-  style="position:fixed;width:100%;z-index:2;"
-  *ngIf="render">
+  style="position:fixed;width:100%;z-index:2;">
 
   <div class="tabs">
     <input type="radio" id="tab1" name="tab-control">
     <input type="radio" id="tab2" name="tab-control">
     <input type="radio" id="tab3" name="tab-control">
     <input type="radio" id="tab4" name="tab-control">
+
     <ul *ngIf="typeUser === 'student'">
-      <li (click)="goTo('/evaluations')">
-        <label for="tab1" role="button">
-          <img src="assets/icons.assets/book.ico" width="24" height="24" alt="Icono Libro" />
-          <br />
-          <span>Inicio</span>
-        </label>
-      </li>
+      <li
+        *ngFor="let navbarItem of userGlobalConfig.studentNavbarItems; let i = index;"
+        (click)="action(navbarItem)">
 
-      <li (click)="goTo('/schools')">
-        <label for="tab2" role="button">
-          <img src="assets/icons.assets/book.ico" width="24" height="24" alt="Icono Libro" />
-          <br />
-          <span>Colegios</span>
-        </label>
-      </li>
-
-      <li (click)="openBarSearchStudents(content)">
-        <label for="tab3" role="button">
-          <img src="assets/icons.assets/book.ico" width="20" height="24" alt="Icono Libro" />
-          <br />
-          <span>Alumnos</span>
-        </label>
-      </li>
-
-      <li (click)="logout()">
-        <label for="tab4" role="button">
-          <img src="assets/icons.assets/book.ico" width="20" height="24" alt="Icono Libro" />
-          <br />
-          <span>Salir</span>
+        <label for="tab{{i+1}}" role="button">
+          <img src="{{navbarItem.icon}}" width="24" height="24" alt="Icono {{navbarItem.title}}" />
+            <br/>
+            <span>{{ navbarItem.title }}</span>
         </label>
       </li>
     </ul>
 
+    <ul *ngIf="typeUser === 'administrator'">
+      <li *ngFor="let navbarItem of userGlobalConfig.administratorNavbarItems; let i = index;">
 
-    <ng-template #content let-modal class="modal-user">
+        <label *ngIf="i !== 2;else modal" for="tab{{i+1}}" role="button" (click)="action(navbarItem)">
+          <img src="{{navbarItem.icon}}" width="24" height="24" alt="Icono {{navbarItem.title}}" />
+          <br/>
+          <span>{{ navbarItem.title }}</span>
+        </label>
+        <ng-template #modal>
+          <label for="tab{{i+1}}" role="button" (click)="openBarSearchStudents(content)">
+            <img src="{{navbarItem.icon}}" width="24" height="24" alt="Icono {{navbarItem.title}}" />
+            <br/>
+            <span>{{ navbarItem.title }}</span>
+          </label>
+        </ng-template>
+      </li>
+    </ul>
+
+    <ng-template class="modal-user" #content let-modal>
       <app-user-search></app-user-search>
     </ng-template>
 
@@ -53,5 +49,4 @@
     </div>
   </div>
 </nav>
-
 <router-outlet></router-outlet>

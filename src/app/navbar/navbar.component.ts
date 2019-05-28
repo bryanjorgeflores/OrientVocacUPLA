@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarItem } from 'src/interfaces/navbar-item.interface';
-import { StudentNavbarItems, AdministratorNavbarItems } from 'src/services/navbar-item.service';
+import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Component({
@@ -17,12 +18,11 @@ export class NavbarComponent implements OnInit {
   render: boolean;
   typeUser: string;
 
-  navbarItems: Array<NavbarItem>;
-
   constructor(
     private titleService: Title,
     private router: Router,
     private modalService: NgbModal,
+    public userGlobalConfig: UserGlobalConfig,
 
   ) {
     this.styleNavBar = {};
@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (localStorage.getItem('usertoken') === null) {
       this.router.navigateByUrl('/login');
       return;
@@ -38,33 +38,28 @@ export class NavbarComponent implements OnInit {
 
     this.typeUser = localStorage.getItem('typeuser');
 
-    switch (this.typeUser) {
-      case 'student':
-        this.navbarItems = StudentNavbarItems;
-        break;
-      case 'administrator':
-        this.navbarItems = AdministratorNavbarItems;
-        break;
-    }
-
+    console.log('init');
   }
 
-  toggleNavbar() {
+
+
+  action(navbarItem: NavbarItem): void {
+    this[navbarItem.action](navbarItem.dir);
   }
 
   openBarSearchStudents(content: any): void {
+    console.log('componenetDIR', content);
     this.modalService.open(content, { size: 'lg' });
 
   }
-
   goTo(componentDIR: string): void {
     this.titleService.setTitle(componentDIR);
     this.router.navigateByUrl(componentDIR);
   }
 
-  logout(): void {
+  logout(componentDIR: string): void {
     localStorage.clear();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl(componentDIR);
   }
 
 }
