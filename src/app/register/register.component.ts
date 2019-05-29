@@ -7,8 +7,8 @@ import { SchoolGetProvider } from 'src/providers/get.providers/school.get.provid
 import { User } from 'src/interfaces/models/user.model';
 import { School } from 'src/interfaces/models/school.model';
 import { entryPasswordRequirements } from 'src/config/constants.config/register.constant.config';
-import { setStyleDefault } from 'src/config/dom.config/navbar.dom.config';
-import { Location } from '@angular/common';
+import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
+import { ComponentConfig } from 'src/config/globals.config/render-component.global.config';
 
 @Component({
   selector: 'app-register',
@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
     private userPostProvider: UserPostProvider,
     private schoolGetProvider: SchoolGetProvider,
     private router: Router,
-    private location: Location,
+    private userGlobalConfig: UserGlobalConfig,
+    private componentConfig: ComponentConfig,
 
   ) {
 
@@ -80,10 +81,6 @@ export class RegisterComponent implements OnInit {
     this.passwordRequirements = entryPasswordRequirements(this.user.password, this.repeatedPassword);
   }
 
-  goToLogin(): void {
-    this.location.back();
-  }
-
   checkPassword(): void {
     this.passwordRequirements = entryPasswordRequirements(this.user.password, this.repeatedPassword);
   }
@@ -106,8 +103,10 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           (user: User) => {
             localStorage.setItem('usertoken', JSON.stringify(user));
+            localStorage.setItem('typeuser', user.type);
 
-            setStyleDefault();
+            this.componentConfig.renderNavbar = true;
+            this.userGlobalConfig.typeUser = user.type;
 
             this.router.navigateByUrl('/evaluations');
           },

@@ -20,13 +20,15 @@ import { SchoolsComponent } from './schools/schools.component';
 import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
 import { SchoolGetProvider } from 'src/providers/get.providers/school.get.provider';
 
-import { StyleGlobalConfig } from 'src/config/globals.config/style.global.config';
 import { UserGetProvider } from 'src/providers/get.providers/user.get.provider';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 import { ResultsComponent } from './results/results.component';
-import { UserSearchComponent } from './modals/user-search/user-search.component';
+import { UserSearchComponent } from './modals.group/user-search/user-search.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserService } from 'src/services/user.service';
+import { MultipleIntelligenceComponent } from './evaluation-types.group/multiple-intelligence/multiple-intelligence.component';
+import { CharacterologicalComponent } from './evaluation-types.group/characterological/characterological.component';
+import { VocationalComponent } from './evaluation-types.group/vocational/vocational.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,9 @@ import { UserService } from 'src/services/user.service';
     ResultsComponent,
     UserSearchComponent,
     PageNotFoundComponent,
+    CharacterologicalComponent,
+    MultipleIntelligenceComponent,
+    VocationalComponent,
 
   ],
   imports: [
@@ -60,7 +65,6 @@ import { UserService } from 'src/services/user.service';
     Title,
     SchoolGetProvider,
     UserGetProvider,
-    StyleGlobalConfig,
     UserGlobalConfig,
     UserService,
 

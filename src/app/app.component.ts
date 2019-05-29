@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { StyleGlobalConfig } from 'src/config/globals.config/style.global.config';
-import { setStyleHidden } from 'src/config/dom.config/navbar.dom.config';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',

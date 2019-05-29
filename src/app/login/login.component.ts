@@ -4,8 +4,9 @@ import { DataLogin } from 'src/interfaces/data-login.inteface';
 import { MessageStatus, StatusGeneral } from 'src/interfaces/input-status.interface';
 import { UserPostProvider } from 'src/providers/post.providers/user.post.provider';
 import { User } from 'src/interfaces/models/user.model';
-import { setStyleDefault, setStyleHidden } from 'src/config/dom.config/navbar.dom.config';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
+import { ComponentConfig } from 'src/config/globals.config/render-component.global.config';
+import { setStyleBody } from 'src/config/dom.config/navbar.dom.config';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userPostProvider: UserPostProvider,
     private userGlobalConfig: UserGlobalConfig,
+    private componentConfig: ComponentConfig,
 
   ) {
     this.dataLogin = {
@@ -32,28 +34,41 @@ export class LoginComponent implements OnInit {
     this.labelIdLogin = {
       message: '', status: StatusGeneral.dark
     };
+
     this.labelPswLogin = {
       message: '', status: StatusGeneral.dark
     };
 
   }
 
-  ngOnInit() {
-    setStyleHidden('rgb(111, 98, 227)');
+  ngOnInit(): void {
+    setStyleBody('rgb(111, 98, 227)');
+
+    this.componentConfig.renderNavbar = false;
   }
 
+
   login() {
-    if (this.dataLogin.id.length < 8) {
+    const conditionId = this.dataLogin.id.length >= 8;
+    const conditionPassword = this.dataLogin.password.length >= 6;
+
+    this.labelIdLogin.message = '';
+    this.labelPswLogin.message = '';
+
+    if (!conditionId) {
       this.labelIdLogin = {
         message: '⚠️verificar', status: StatusGeneral.warning
       };
 
-    } else if (this.dataLogin.password.length < 6) {
+    }
+
+    if (!conditionPassword) {
       this.labelPswLogin = {
         message: '⚠️verificar', status: StatusGeneral.warning
       };
+    }
 
-    } else {
+    if (conditionId && conditionPassword) {
       this.userPostProvider.postDataForLogin(this.dataLogin)
         .subscribe(
           (userToken: User) => {
@@ -63,7 +78,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('typeuser', userToken.type);
             this.userGlobalConfig.typeUser = userToken.type;
 
-            setStyleDefault();
+            this.userGlobalConfig.typeUser = userToken.type;
+            this.componentConfig.renderNavbar = true;
 
             if (userToken.type === 'student') {
               this.router.navigateByUrl('/evaluations');
@@ -74,11 +90,13 @@ export class LoginComponent implements OnInit {
           },
           (err) => {
             this.labelIdLogin = {
-              message: '', status: StatusGeneral.dark
+              message: '⚠️verificar', status: StatusGeneral.secondary
             };
+
             this.labelPswLogin = {
-              message: '️', status: StatusGeneral.dark
+              message: '⚠️verificar', status: StatusGeneral.secondary
             };
+
             return alert(err.error.text);
           }
         );

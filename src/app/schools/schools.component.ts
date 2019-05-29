@@ -8,6 +8,7 @@ import { School } from 'src/interfaces/models/school.model';
 import { User } from 'src/interfaces/models/user.model';
 
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
+import { setStyleBody } from 'src/config/dom.config/navbar.dom.config';
 
 
 @Component({
@@ -33,6 +34,8 @@ export class SchoolsComponent implements OnInit {
       this.router.navigateByUrl('/login');
       return;
     }
+
+    setStyleBody('#262626');
 
     this.schoolGetProvider.getSchools()
       .subscribe((schools: Array<School>) => {

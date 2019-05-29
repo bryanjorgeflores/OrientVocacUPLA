@@ -1,4 +1,5 @@
 <nav
+  *ngIf="componentConfig.renderNavbar || typeUser"
   id="navbar"
   class="navbar navbar-expand-lg navbar-dark bg-dark"
   style="position:fixed;width:100%;z-index:2;">
@@ -9,7 +10,7 @@
     <input type="radio" id="tab3" name="tab-control">
     <input type="radio" id="tab4" name="tab-control">
 
-    <ul *ngIf="typeUser === 'student'">
+    <ul *ngIf="userGlobalConfig.typeUser === 'student' || typeUser === 'student'">
       <li
         *ngFor="let navbarItem of userGlobalConfig.studentNavbarItems; let i = index;"
         (click)="action(navbarItem)">
@@ -22,7 +23,7 @@
       </li>
     </ul>
 
-    <ul *ngIf="typeUser === 'administrator'">
+    <ul *ngIf="userGlobalConfig.typeUser === 'administrator' || typeUser === 'administrator'">
       <li *ngFor="let navbarItem of userGlobalConfig.administratorNavbarItems; let i = index;">
 
         <label *ngIf="i !== 2;else modal" for="tab{{i+1}}" role="button" (click)="action(navbarItem)">

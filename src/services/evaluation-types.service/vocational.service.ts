@@ -1,4 +1,4 @@
-let characterologicalQuestions: Array<{ answer1: string, answer2: string, answer3: string }> = [
+export const vocationalOrientationQuestions: Array<{ answer1: string, answer2: string, answer3: string }> = [
   {
     answer1: 'Leer en relación a los inventos y tecnología actual.',
     answer2: 'Leer un libro sobre la física nuclear.',

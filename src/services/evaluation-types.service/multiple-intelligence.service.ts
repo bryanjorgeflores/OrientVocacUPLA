@@ -1,4 +1,4 @@
-let multipleIntelligenceQuestions: Array<string> = [
+export const multipleIntelligenceQuestions: Array<string> = [
   'Estoy Orgulloso de Tener Un Amplio Vocabulario',
   'Me resulta fácil manejar diversos símbolos numéricos',
   'La música es un componente altamente significativo de mi existencia diaria',

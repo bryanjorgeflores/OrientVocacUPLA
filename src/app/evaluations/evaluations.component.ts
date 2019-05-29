@@ -3,6 +3,7 @@ import { Encuesta } from 'src/interfaces/encuestas';
 import { animateProgressBar } from 'src/config/dom.config/evaluations.dom.config';
 import { Router } from '@angular/router';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
+import { setStyleDefault, setStyleBody } from 'src/config/dom.config/navbar.dom.config';
 
 @Component({
   selector: 'app-evaluations',
@@ -26,8 +27,9 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    console.log('this.userGlobalConfig.typeUser', this.userGlobalConfig.typeUser);
+    setStyleBody('#262626');
 
+    console.log('this.userGlobalConfig.typeUser', this.userGlobalConfig.typeUser);
 
 
     this.tests = [

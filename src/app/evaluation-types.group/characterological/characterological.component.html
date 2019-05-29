@@ -1,0 +1,14 @@
+<div>
+  <button class="btn btn-dark" (click)="questionResponse()">
+    {{questions[indexQuestion].answer1}}
+  </button>
+  <br/>
+  <button class="btn btn-primary" (click)="questionResponse()">
+    {{questions[indexQuestion].answer2}}
+  </button>
+  <br/>
+  <button *ngIf="indexQuestion === 25" class="btn btn-warning" (click)="questionResponse()">
+    {{questions[indexQuestion].answer3}}
+  </button>
+
+</div>
