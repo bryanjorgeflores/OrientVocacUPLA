@@ -73,3 +73,5 @@ export const multipleIntelligenceQuestions: Array<string> = [
   'Amo la naturaleza, sus ríos, montañas, valles y lagos',
 
 ];
+
+export const quantityMultipleIntelligenceQuestions = 72;

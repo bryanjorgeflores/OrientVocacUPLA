@@ -1,0 +1,28 @@
+<div>
+  <section class="tp-section">
+    <mat-checkbox class="tp-margin" [(ngModel)]="indeterminate">{{questions[indexQuestion].answer1}}</mat-checkbox>
+  </section>
+    <mat-checkbox class="tp-margin" [(ngModel)]="checked">{{questions[indexQuestion].answer2}}</mat-checkbox>
+  <section class="tp-section">
+    <mat-checkbox class="tp-margin" [(ngModel)]="disabled">{{questions[indexQuestion].answer3}}</mat-checkbox>
+  </section>
+  <h2 class="tp-h2">Result</h2>
+  <section class="tp-section">
+    <mat-checkbox
+    class="tp-margin"
+    [(ngModel)]="checked"
+    [(indeterminate)]="indeterminate"
+    [labelPosition]="labelPosition"
+    [disabled]="disabled"
+    [aria-label]="labelPosition">
+    Ejemplo
+    </mat-checkbox>
+  </section>
+  <div class="py-3"></div>
+  <button class="btn btn-primary" (click)="answerQuestion()">Next</button>
+
+
+  <p style="position:absolute;top:40px;right:30px">
+    #{{indexQuestion + 1}}
+  </p>
+</div>

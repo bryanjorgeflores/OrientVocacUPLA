@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EvaluationValueService } from 'src/services/evaluation-value.service';
 
 @Component({
   selector: 'app-evaluation',
@@ -7,17 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./evaluation.component.scss']
 })
 export class EvaluationComponent implements OnInit {
-  preguntas: Array<any> = [
-    { titulo: 'Pregunta 1', respuesta: 'respuesta 1', opcion1: '1', opcion2: '2' },
-    { titulo: 'Pregunta 2', respuesta: 'respuesta 2', opcion1: '1', opcion2: '2' },
-    { titulo: 'Pregunta 3', respuesta: 'respuesta 3', opcion1: '1', opcion2: '2' },
-    { titulo: 'Pregunta 4', respuesta: 'respuesta 4', opcion1: '1', opcion2: '2' },
-
-  ];
-  entrada = 0;
+  quantityQuestions: number;
+  evaluationType: string;
 
   constructor(
     private router: Router,
+    public evaluationValueService: EvaluationValueService,
 
   ) { }
 
@@ -26,14 +22,11 @@ export class EvaluationComponent implements OnInit {
       this.router.navigateByUrl('/login');
       return;
     }
+
+    this.quantityQuestions = +localStorage.getItem('quantityquestions');
+    this.evaluationType = localStorage.getItem('evaluationtype');
+    console.log(this.evaluationType);
   }
 
-  cambiarPregunta(): void {
-    this.entrada++;
-
-    if (this.entrada === this.preguntas.length) {
-      this.entrada = 0;
-    }
-  }
 
 }

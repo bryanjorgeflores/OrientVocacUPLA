@@ -8,3 +8,4 @@ export interface Evaluation {
   last: Array<number>;
   message: string;
 }
+

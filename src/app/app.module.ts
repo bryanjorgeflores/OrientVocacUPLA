@@ -1,12 +1,18 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { MatCardModule, MatGridListModule, MatIconModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  MatCardModule,
+  MatGridListModule,
+  MatIconModule, MatCheckboxModule
+} from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -28,7 +34,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { UserService } from 'src/services/user.service';
 import { MultipleIntelligenceComponent } from './evaluation-types.group/multiple-intelligence/multiple-intelligence.component';
 import { CharacterologicalComponent } from './evaluation-types.group/characterological/characterological.component';
-import { VocationalComponent } from './evaluation-types.group/vocational/vocational.component';
+import { VocationalOrientationComponent } from './evaluation-types.group/vocational-orientation/vocational-orientation.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +51,7 @@ import { VocationalComponent } from './evaluation-types.group/vocational/vocatio
     PageNotFoundComponent,
     CharacterologicalComponent,
     MultipleIntelligenceComponent,
-    VocationalComponent,
+    VocationalOrientationComponent,
 
   ],
   imports: [
@@ -58,6 +64,8 @@ import { VocationalComponent } from './evaluation-types.group/vocational/vocatio
     HttpClientModule,
     FormsModule,
     NgbModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
 
   ],
   providers: [

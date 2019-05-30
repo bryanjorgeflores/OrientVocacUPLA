@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { characterologicalQuestions } from 'src/services/evaluation-types.service/characterological.service';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { CharacterologicalQuestion } from 'src/interfaces/type-evaluations.interface';
+import { EvaluationValueService } from 'src/services/evaluation-value.service';
 
 @Component({
   selector: 'app-characterological',
@@ -7,10 +8,11 @@ import { characterologicalQuestions } from 'src/services/evaluation-types.servic
   styleUrls: ['./characterological.component.scss']
 })
 export class CharacterologicalComponent implements OnInit, OnDestroy {
-  questions: Array<{ answer1: string, answer2: string, answer3?: string }> = [];
+  @Input() questions: Array<CharacterologicalQuestion> = [];
   indexQuestion: number;
 
   constructor(
+    private evaluationValueService: EvaluationValueService,
 
   ) {
   this.indexQuestion = 0;
@@ -18,7 +20,6 @@ export class CharacterologicalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('Characterologicas Component Init');
-    this.questions = characterologicalQuestions;
   }
 
   ngOnDestroy(): void {
@@ -26,12 +27,13 @@ export class CharacterologicalComponent implements OnInit, OnDestroy {
   }
 
   questionResponse(): void {
-    if (this.indexQuestion === this.questions.length - 1) {
+    if (this.indexQuestion >= this.questions.length - 1) {
       this.indexQuestion = 0;
+      this.evaluationValueService.lastIndexQuestionCharacterological = this.questions.length - 1;
       return;
     }
     this.indexQuestion++;
-
+    this.evaluationValueService.lastIndexQuestionCharacterological++;
   }
 
 }

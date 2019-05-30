@@ -1,9 +1,28 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Encuesta } from 'src/interfaces/encuestas';
-import { animateProgressBar } from 'src/config/dom.config/evaluations.dom.config';
 import { Router } from '@angular/router';
-import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
-import { setStyleDefault, setStyleBody } from 'src/config/dom.config/navbar.dom.config';
+
+import { Evaluation } from 'src/interfaces/evaluation';
+import { EvaluationType } from 'src/interfaces/type-evaluations.interface';
+
+import { EvaluationService } from 'src/services/evaluation.service';
+import { EvaluationValueService } from 'src/services/evaluation-value.service';
+
+import {
+  multipleIntelligenceQuestions,
+  quantityMultipleIntelligenceQuestions
+} from 'src/config/constants.config/evaluation-types/multiple-intelligence.';
+import {
+  vocationalOrientationQuestions,
+  quantityVocationalOrientationQuestions
+} from 'src/config/constants.config/evaluation-types/vocational-orientation.constant';
+import {
+  characterologicalQuestions,
+  quantityCharacterologicalQuestions
+} from 'src/config/constants.config/evaluation-types/characterological';
+
+import { animateProgressBar } from 'src/config/dom.config/evaluations.dom.config';
+import { setStyleBody } from 'src/config/dom.config/navbar.dom.config';
+
 
 @Component({
   selector: 'app-evaluations',
@@ -11,11 +30,13 @@ import { setStyleDefault, setStyleBody } from 'src/config/dom.config/navbar.dom.
   styleUrls: ['./evaluations.component.scss']
 })
 export class EvaluationsComponent implements OnInit, AfterViewInit {
-  tests: Array<Encuesta>;
+  evaluations: Array<Evaluation>;
+  evaluationsPercentages: [number, number, number];
 
   constructor(
     private router: Router,
-    public userGlobalConfig: UserGlobalConfig,
+    public evaluationService: EvaluationService,
+    public evaluationValueService: EvaluationValueService
 
   ) {
 
@@ -29,42 +50,28 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
 
     setStyleBody('#262626');
 
-    console.log('this.userGlobalConfig.typeUser', this.userGlobalConfig.typeUser);
+    this.evaluations = this.evaluationService.evaluations;
 
-
-    this.tests = [
-      {
-        nombre: 'Encuesta 1',
-        detalle: 'Informacion de la encuesta 1',
-        src: '../../assets/login.jpg',
-        porcentaje: 50,
-        color: 'yellow',
-      },
-      {
-        nombre: 'Encuesta 2',
-        detalle: 'Informacion de la encuesta 2',
-        src: '../../assets/login2.jpg',
-        porcentaje: 60,
-        color: 'blue',
-      },
-      {
-        nombre: 'Encuesta 3',
-        detalle: 'Informacion de la encuesta 3',
-        src: '../../assets/login.jpeg',
-        porcentaje: 80,
-        color: 'black',
-      }
+    this.evaluationsPercentages = [
+      this.evaluationValueService.lastIndexQuestionVocationalOrientation / quantityVocationalOrientationQuestions,
+      this.evaluationValueService.lastIndexQuestionMultipleIntelligence / quantityMultipleIntelligenceQuestions,
+      this.evaluationValueService.lastIndexQuestionCharacterological / quantityCharacterologicalQuestions,
     ];
   }
 
 
   ngAfterViewInit(): void {
-    for (let i = 0; i < this.tests.length; i++) {
-      let valueProgressRight = this.tests[i].porcentaje;
+    for (let i = 0; i < this.evaluations.length; i++) {
+      let valueProgressRight = this.evaluationsPercentages[i] * 100;
       let valueProgressLeft = 0;
 
       if (valueProgressRight > 50) {
         valueProgressLeft = valueProgressRight - 50;
+        valueProgressRight = 50;
+      }
+
+      if (valueProgressRight >= 100) {
+        valueProgressLeft = 50;
         valueProgressRight = 50;
       }
 
@@ -77,5 +84,24 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
 
   }
 
+  goToEvaluation(evaluation: Evaluation) {
+    localStorage.setItem('evaluationtype', evaluation.type);
+    console.log(evaluation.type);
 
+    localStorage.setItem('quantityquestions', evaluation.quantity.toString());
+
+    switch (evaluation.type) {
+      case EvaluationType.intelligence:
+        this.evaluationValueService.evaluationTypeSelected = multipleIntelligenceQuestions;
+        break;
+      case EvaluationType.vocational:
+        this.evaluationValueService.evaluationTypeSelected = vocationalOrientationQuestions;
+        break;
+      case EvaluationType.charactelogical:
+        this.evaluationValueService.evaluationTypeSelected = characterologicalQuestions;
+        break;
+    }
+
+    this.router.navigateByUrl('/evaluation');
+  }
 }

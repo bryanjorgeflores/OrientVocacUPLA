@@ -1,17 +1,11 @@
 .container {
 	background: #fff;
 }
-.stepwizard {
-	display: table;
-	width: 100%;
-	position: relative;
-}
+
 .stepwizard-step p {
   margin-top: 10px;
 }
-.stepwizard-row {
-  display: table-row;
-}
+
 
 
 .stepwizard-step button[disabled] {
@@ -45,9 +39,9 @@
   line-height: 1.428571429;
   border-radius: 15px;
 }
-.btn span .glyphicon {    		
-	opacity: 0;				
+.btn span .glyphicon {
+	opacity: 0;
 }
-.btn.active span .glyphicon {				
-	opacity: 1;				
+.btn.active span .glyphicon {
+	opacity: 1;
 }

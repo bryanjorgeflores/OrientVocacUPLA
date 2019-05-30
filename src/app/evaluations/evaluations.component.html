@@ -1,22 +1,22 @@
 <div class="container" style="padding-top:66px;">
-  <div class="card" *ngFor="let test of tests; let i = index;">
+  <div class="card" *ngFor="let evaluation of evaluationService.evaluations; let i = index;">
     <div class="imgBx">
-      <img src="{{test.src}}" alt="Imagen de tipo de Test" />
+      <img src="{{evaluation.src}}" alt="Imagen de tipo de Evaluación" />
     </div>
     <div class="details">
       <div class="content">
-        <h2>{{test.nombre}}</h2>
-        <span>{{test.detalle}}</span>
+        <h2>{{evaluation.name}}</h2>
+        <span>{{evaluation.detail}}</span>
         <div class="py-3"></div>
-        <a class="pl-4 pr-4" routerLink="/evaluation">Ingresar</a>
-        <div class="progress {{test.color}}">
+        <a class="pl-4 pr-4" (click)="goToEvaluation(evaluation)">Ingresar</a>
+        <div class="progress {{evaluation.color}}">
           <span class="progress-left">
             <span class="progress-bar" id='progress-bar-left-{{i}}'></span>
           </span>
           <span class="progress-right">
             <span class="progress-bar" id="progress-bar-right-{{i}}"></span>
           </span>
-          <div class="progress-value">{{test.porcentaje}}%</div>
+          <div class="progress-value">{{evaluationsPercentages[i] * 100 | number: '1.0-0'}}%</div>
         </div>
       </div>
     </div>

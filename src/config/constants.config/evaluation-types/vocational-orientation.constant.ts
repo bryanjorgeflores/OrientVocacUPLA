@@ -1,4 +1,6 @@
-export const vocationalOrientationQuestions: Array<{ answer1: string, answer2: string, answer3: string }> = [
+import { VocationalOrientationQuestion } from 'src/interfaces/type-evaluations.interface';
+
+export const vocationalOrientationQuestions: Array<VocationalOrientationQuestion> = [
   {
     answer1: 'Leer en relación a los inventos y tecnología actual.',
     answer2: 'Leer un libro sobre la física nuclear.',
@@ -541,3 +543,5 @@ export const vocationalOrientationQuestions: Array<{ answer1: string, answer2: s
   },
 
 ];
+
+export const quantityVocationalOrientationQuestions = 108;

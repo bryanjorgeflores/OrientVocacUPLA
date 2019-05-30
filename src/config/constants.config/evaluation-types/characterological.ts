@@ -125,6 +125,8 @@ export const characterologicalQuestions: Array<{ answer1: string, answer2: strin
 
 ];
 
+export const quantityCharacterologicalQuestions = 30;
+
 /*
 Commando para sacar las preguntas.
 localStorage.setItem('preguntas', JSON.stringify([]));
