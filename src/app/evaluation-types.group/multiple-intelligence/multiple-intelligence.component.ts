@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UserTokenService } from 'src/services/user-token.service';
+import { multipleIntelligenceQuestions } from 'src/config/constants.config/evaluation-types/multiple-intelligence.';
 import { EvaluationValueService } from 'src/services/evaluation-value.service';
 
 @Component({
@@ -7,17 +9,19 @@ import { EvaluationValueService } from 'src/services/evaluation-value.service';
   styleUrls: ['./multiple-intelligence.component.scss']
 })
 export class MultipleIntelligenceComponent implements OnInit, OnDestroy {
-  @Input() questions: Array<string> = [];
   indexQuestion = 0;
 
   constructor(
-    private evaluationValueService: EvaluationValueService,
+    private userTokenService: UserTokenService,
+    public evaluationValueService: EvaluationValueService,
 
   ) {
   }
 
   ngOnInit(): void {
-    console.log('MultipleIntelligece Component Init');
+    if (this.userTokenService.evaluation.last[1]) {
+      this.indexQuestion = this.userTokenService.evaluation.last[1];
+    }
   }
 
   ngOnDestroy(): void {
@@ -25,12 +29,14 @@ export class MultipleIntelligenceComponent implements OnInit, OnDestroy {
   }
 
   questionResponse(): void {
-    if (this.indexQuestion >= this.questions.length - 1) {
+    if (this.indexQuestion >= this.evaluationValueService.evaluationSelected.length - 1) {
       this.indexQuestion = 0;
-      this.evaluationValueService.lastIndexQuestionMultipleIntelligence = this.questions.length - 1;
+      this.userTokenService.evaluation.last[1] = this.evaluationValueService.evaluationSelected.length - 1;
       return;
     }
     this.indexQuestion++;
-    this.evaluationValueService.lastIndexQuestionMultipleIntelligence++;
+    if (this.userTokenService.evaluation.last[1] < this.evaluationValueService.evaluationSelected.length - 1) {
+    this.userTokenService.evaluation.last[1]++;
+    }
   }
 }

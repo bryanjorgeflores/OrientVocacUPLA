@@ -2,25 +2,25 @@
 <br/>
 <br/>
 
-<div class="container p-5">
+<div class="container p-5" style="z-index:-1">
 	<div class="stepwizard">
 		<div style="background-color:lightblue;width:100%;overflow-x: scroll;">
-      <div class="stepwizard-step ml-1 mr-1" style="margin:0px 20px;" *ngFor="let evaluation of evaluationValueService.evaluationTypeSelected; let i = index;">
-        <a type="button" class="btn btn-primary btn-circle">{{i + 1}}</a>
+      <div class="stepwizard-step ml-1 mr-1" style="margin:0px 20px;" *ngFor="let evaluation of evaluationValueService.evaluationSelected; let i = index;">
+        <a type="button" class="btn btn-primary btn-circle" (click)="indexQuestion = i">{{i + 1}}</a>
       </div>
 		</div>
 	</div>
 
   <div class="p-5" *ngIf="evaluationType === 'vocationalOrientation'">
-    <app-vocational-orientation [questions]="evaluationValueService.evaluationTypeSelected">
+    <app-vocational-orientation [indexQuestion]="indexQuestion">
     </app-vocational-orientation>
   </div>
   <div class="p-5" *ngIf="evaluationType === 'multipleIntelligence'">
-  <app-multiple-intelligence [questions]="evaluationValueService.evaluationTypeSelected">
+  <app-multiple-intelligence>
   </app-multiple-intelligence>
   </div>
   <div class="p-5" *ngIf="evaluationType === 'characterological'">
-    <app-characterological [questions]="evaluationValueService.evaluationTypeSelected">
+    <app-characterological>
     </app-characterological>
   </div>
 </div>

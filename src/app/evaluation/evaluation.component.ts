@@ -8,8 +8,8 @@ import { EvaluationValueService } from 'src/services/evaluation-value.service';
   styleUrls: ['./evaluation.component.scss']
 })
 export class EvaluationComponent implements OnInit {
-  quantityQuestions: number;
   evaluationType: string;
+  indexQuestion = 0;
 
   constructor(
     private router: Router,
@@ -23,9 +23,7 @@ export class EvaluationComponent implements OnInit {
       return;
     }
 
-    this.quantityQuestions = +localStorage.getItem('quantityquestions');
     this.evaluationType = localStorage.getItem('evaluationtype');
-    console.log(this.evaluationType);
   }
 
 

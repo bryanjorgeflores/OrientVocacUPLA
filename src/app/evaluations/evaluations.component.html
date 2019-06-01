@@ -16,7 +16,10 @@
           <span class="progress-right">
             <span class="progress-bar" id="progress-bar-right-{{i}}"></span>
           </span>
-          <div class="progress-value">{{evaluationsPercentages[i] * 100 | number: '1.0-0'}}%</div>
+          <div
+            class="progress-value"
+            *ngIf="evaluationsPercentages"
+            >{{evaluationsPercentages[i] * 100 | number: '1.0-0'}}%</div>
         </div>
       </div>
     </div>

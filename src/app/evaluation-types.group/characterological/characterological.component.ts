@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { CharacterologicalQuestion } from 'src/interfaces/type-evaluations.interface';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UserTokenService } from 'src/services/user-token.service';
+import { characterologicalQuestions } from 'src/config/constants.config/evaluation-types/characterological';
 import { EvaluationValueService } from 'src/services/evaluation-value.service';
 
 @Component({
@@ -8,18 +9,20 @@ import { EvaluationValueService } from 'src/services/evaluation-value.service';
   styleUrls: ['./characterological.component.scss']
 })
 export class CharacterologicalComponent implements OnInit, OnDestroy {
-  @Input() questions: Array<CharacterologicalQuestion> = [];
   indexQuestion: number;
 
   constructor(
-    private evaluationValueService: EvaluationValueService,
+    private userTokenService: UserTokenService,
+    public evaluationValueService: EvaluationValueService,
 
   ) {
   this.indexQuestion = 0;
   }
 
   ngOnInit(): void {
-    console.log('Characterologicas Component Init');
+    if (this.userTokenService.evaluation.last[0]) {
+      this.indexQuestion = this.userTokenService.evaluation.last[0];
+    }
   }
 
   ngOnDestroy(): void {
@@ -27,13 +30,16 @@ export class CharacterologicalComponent implements OnInit, OnDestroy {
   }
 
   questionResponse(): void {
-    if (this.indexQuestion >= this.questions.length - 1) {
+    if (this.indexQuestion >= this.evaluationValueService.evaluationSelected.length - 1) {
       this.indexQuestion = 0;
-      this.evaluationValueService.lastIndexQuestionCharacterological = this.questions.length - 1;
       return;
     }
     this.indexQuestion++;
-    this.evaluationValueService.lastIndexQuestionCharacterological++;
+
+    if (this.userTokenService.evaluation.last[0] < this.evaluationValueService.evaluationSelected.length - 1) {
+      this.userTokenService.evaluation.last[0]++;
+    }
+    console.log(this.userTokenService.evaluation.last[0]);
   }
 
 }

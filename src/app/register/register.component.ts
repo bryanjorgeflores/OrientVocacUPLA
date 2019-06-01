@@ -9,6 +9,8 @@ import { School } from 'src/interfaces/models/school.model';
 import { entryPasswordRequirements } from 'src/config/constants.config/register.constant.config';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 import { ComponentConfig } from 'src/config/globals.config/render-component.global.config';
+import { EvaluationValueService } from 'src/services/evaluation-value.service';
+import { UserTokenService } from 'src/services/user-token.service';
 
 @Component({
   selector: 'app-register',
@@ -37,6 +39,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private userGlobalConfig: UserGlobalConfig,
     private componentConfig: ComponentConfig,
+    private evaluationValueService: EvaluationValueService,
+    private userTokenService: UserTokenService,
 
   ) {
 
@@ -68,7 +72,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.schoolGetProvider.getSchools()
       .subscribe(
         (schools: Array<School>) => {
@@ -104,6 +108,8 @@ export class RegisterComponent implements OnInit {
           (user: User) => {
             localStorage.setItem('usertoken', JSON.stringify(user));
             localStorage.setItem('typeuser', user.type);
+            localStorage.setItem('evaluationtoken', JSON.stringify(this.evaluationValueService.evaluationInit));
+            this.userTokenService.evaluation = this.evaluationValueService.evaluationInit;
 
             this.componentConfig.renderNavbar = true;
             this.userGlobalConfig.typeUser = user.type;

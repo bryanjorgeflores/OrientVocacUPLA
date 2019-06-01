@@ -1,4 +1,4 @@
-export interface Evaluation {
+export interface EvaluationChart {
   type: string;
   name: string;
   detail: string;

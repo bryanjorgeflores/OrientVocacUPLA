@@ -3,14 +3,14 @@ import { EvaluationValueService } from './evaluation-value.service';
 import { quantityVocationalOrientationQuestions } from 'src/config/constants.config/evaluation-types/vocational-orientation.constant';
 import { quantityMultipleIntelligenceQuestions } from 'src/config/constants.config/evaluation-types/multiple-intelligence.';
 import { quantityCharacterologicalQuestions } from 'src/config/constants.config/evaluation-types/characterological';
-import { Evaluation } from 'src/interfaces/evaluation';
+import { EvaluationChart } from 'src/interfaces/evaluation-chart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EvaluationService {
 
-  evaluations: Array<Evaluation> = [
+  evaluations: Array<EvaluationChart> = [
     {
       type: 'vocationalOrientation',
       name: 'Orientacion Vocacional',

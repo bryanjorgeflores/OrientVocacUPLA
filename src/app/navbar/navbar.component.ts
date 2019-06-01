@@ -50,10 +50,9 @@ export class NavbarComponent implements OnInit {
   openBarSearchStudents(content: any): void {
     console.log('componenetDIR', content);
     this.modalService.open(content, { size: 'lg' });
-
   }
+
   goTo(componentDIR: string): void {
-    this.titleService.setTitle(componentDIR);
     this.router.navigateByUrl(componentDIR);
   }
 

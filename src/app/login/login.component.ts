@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     setStyleBody('rgb(111, 98, 227)');
 
-    this.componentConfig.renderNavbar = false;
   }
 
 

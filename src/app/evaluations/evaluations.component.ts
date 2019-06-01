@@ -1,11 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Evaluation } from 'src/interfaces/evaluation';
+import { EvaluationChart } from 'src/interfaces/evaluation-chart';
 import { EvaluationType } from 'src/interfaces/type-evaluations.interface';
 
 import { EvaluationService } from 'src/services/evaluation.service';
-import { EvaluationValueService } from 'src/services/evaluation-value.service';
 
 import {
   multipleIntelligenceQuestions,
@@ -22,6 +21,8 @@ import {
 
 import { animateProgressBar } from 'src/config/dom.config/evaluations.dom.config';
 import { setStyleBody } from 'src/config/dom.config/navbar.dom.config';
+import { UserTokenService } from 'src/services/user-token.service';
+import { EvaluationValueService } from 'src/services/evaluation-value.service';
 
 
 @Component({
@@ -30,13 +31,14 @@ import { setStyleBody } from 'src/config/dom.config/navbar.dom.config';
   styleUrls: ['./evaluations.component.scss']
 })
 export class EvaluationsComponent implements OnInit, AfterViewInit {
-  evaluations: Array<Evaluation>;
+  evaluations: Array<EvaluationChart>;
   evaluationsPercentages: [number, number, number];
 
   constructor(
     private router: Router,
+    public userTokenService: UserTokenService,
     public evaluationService: EvaluationService,
-    public evaluationValueService: EvaluationValueService
+    private evaluationValueService: EvaluationValueService,
 
   ) {
 
@@ -50,17 +52,25 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
 
     setStyleBody('#262626');
 
-    this.evaluations = this.evaluationService.evaluations;
+    this.evaluations = this.evaluationService.evaluations || [];
 
     this.evaluationsPercentages = [
-      this.evaluationValueService.lastIndexQuestionVocationalOrientation / quantityVocationalOrientationQuestions,
-      this.evaluationValueService.lastIndexQuestionMultipleIntelligence / quantityMultipleIntelligenceQuestions,
-      this.evaluationValueService.lastIndexQuestionCharacterological / quantityCharacterologicalQuestions,
+      this.userTokenService.evaluation.last[2] / (quantityVocationalOrientationQuestions - 1),
+      this.userTokenService.evaluation.last[1] / (quantityMultipleIntelligenceQuestions - 1),
+      this.userTokenService.evaluation.last[0] / (quantityCharacterologicalQuestions - 1),
     ];
+
+    console.log(this.userTokenService.evaluation.last[0]);
+    console.log(this.userTokenService.evaluation.last[1]);
+    console.log(this.userTokenService.evaluation.last[2]);
   }
 
 
   ngAfterViewInit(): void {
+    if (!this.evaluations) {
+      return;
+    }
+
     for (let i = 0; i < this.evaluations.length; i++) {
       let valueProgressRight = this.evaluationsPercentages[i] * 100;
       let valueProgressLeft = 0;
@@ -84,21 +94,18 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
 
   }
 
-  goToEvaluation(evaluation: Evaluation) {
+  goToEvaluation(evaluation: EvaluationChart) {
     localStorage.setItem('evaluationtype', evaluation.type);
-    console.log(evaluation.type);
-
-    localStorage.setItem('quantityquestions', evaluation.quantity.toString());
 
     switch (evaluation.type) {
       case EvaluationType.intelligence:
-        this.evaluationValueService.evaluationTypeSelected = multipleIntelligenceQuestions;
+        this.evaluationValueService.evaluationSelected = multipleIntelligenceQuestions;
         break;
       case EvaluationType.vocational:
-        this.evaluationValueService.evaluationTypeSelected = vocationalOrientationQuestions;
+        this.evaluationValueService.evaluationSelected = vocationalOrientationQuestions;
         break;
       case EvaluationType.charactelogical:
-        this.evaluationValueService.evaluationTypeSelected = characterologicalQuestions;
+        this.evaluationValueService.evaluationSelected = characterologicalQuestions;
         break;
     }
 
