@@ -108,9 +108,8 @@ export class RegisterComponent implements OnInit {
           (user: User) => {
             localStorage.setItem('usertoken', JSON.stringify(user));
             localStorage.setItem('typeuser', user.type);
-            localStorage.setItem('evaluationtoken', JSON.stringify(this.evaluationValueService.evaluationInit));
-            this.userTokenService.evaluation = this.evaluationValueService.evaluationInit;
-
+            localStorage.setItem('evaluationtoken', JSON.stringify(user.evaluation));
+            this.userTokenService.evaluation = user.evaluation;
             this.componentConfig.renderNavbar = true;
             this.userGlobalConfig.typeUser = user.type;
 

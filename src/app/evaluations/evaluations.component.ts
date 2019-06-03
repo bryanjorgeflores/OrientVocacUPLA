@@ -7,16 +7,13 @@ import { EvaluationType } from 'src/interfaces/type-evaluations.interface';
 import { EvaluationService } from 'src/services/evaluation.service';
 
 import {
-  multipleIntelligenceQuestions,
-  quantityMultipleIntelligenceQuestions
+  multipleIntelligenceQuestions
 } from 'src/config/constants.config/evaluation-types/multiple-intelligence.';
 import {
-  vocationalOrientationQuestions,
-  quantityVocationalOrientationQuestions
+  vocationalOrientationQuestions
 } from 'src/config/constants.config/evaluation-types/vocational-orientation.constant';
 import {
-  characterologicalQuestions,
-  quantityCharacterologicalQuestions
+  characterologicalQuestions
 } from 'src/config/constants.config/evaluation-types/characterological';
 
 import { animateProgressBar } from 'src/config/dom.config/evaluations.dom.config';
@@ -55,9 +52,9 @@ export class EvaluationsComponent implements OnInit, AfterViewInit {
     this.evaluations = this.evaluationService.evaluations || [];
 
     this.evaluationsPercentages = [
-      this.userTokenService.evaluation.last[2] / (quantityVocationalOrientationQuestions - 1),
-      this.userTokenService.evaluation.last[1] / (quantityMultipleIntelligenceQuestions - 1),
-      this.userTokenService.evaluation.last[0] / (quantityCharacterologicalQuestions - 1),
+      this.userTokenService.evaluation.last[2] / 107,
+      this.userTokenService.evaluation.last[1] / 71,
+      this.userTokenService.evaluation.last[0] / 29,
     ];
 
     console.log(this.userTokenService.evaluation.last[0]);

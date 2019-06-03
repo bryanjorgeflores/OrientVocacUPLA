@@ -1,7 +1,8 @@
 export interface Evaluation {
   _id?: string;
-  test: Array<string>;
+  tests: Array<string>;
   results: Array<{
+    _id?: string;
     code: number;
     chord: boolean;
   }>;

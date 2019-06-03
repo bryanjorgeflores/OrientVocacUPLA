@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { UserTokenService } from 'src/services/user-token.service';
-import { characterologicalQuestions } from 'src/config/constants.config/evaluation-types/characterological';
 import { EvaluationValueService } from 'src/services/evaluation-value.service';
 
 @Component({
@@ -9,7 +8,8 @@ import { EvaluationValueService } from 'src/services/evaluation-value.service';
   styleUrls: ['./characterological.component.scss']
 })
 export class CharacterologicalComponent implements OnInit, OnDestroy {
-  indexQuestion: number;
+  @Input() indexQuestion: number;
+  answers: Array<string>;
 
   constructor(
     private userTokenService: UserTokenService,
@@ -23,23 +23,27 @@ export class CharacterologicalComponent implements OnInit, OnDestroy {
     if (this.userTokenService.evaluation.last[0]) {
       this.indexQuestion = this.userTokenService.evaluation.last[0];
     }
+    this.answers = this.userTokenService.evaluation.tests[0].split('');
+  }
+
+  questionResponse(option: string): void {
+    if (this.indexQuestion >= 29) {
+      this.answers[this.indexQuestion] = option;
+      this.indexQuestion = 0;
+      this.userTokenService.evaluation.last[0] = 29;
+      return;
+    }
+    this.answers[this.indexQuestion] = option;
+    this.indexQuestion++;
+
+    if (this.userTokenService.evaluation.last[0] < 29) {
+      this.userTokenService.evaluation.last[0]++;
+    }
   }
 
   ngOnDestroy(): void {
-    console.log('Characterological Component Destroyed');
-  }
-
-  questionResponse(): void {
-    if (this.indexQuestion >= this.evaluationValueService.evaluationSelected.length - 1) {
-      this.indexQuestion = 0;
-      return;
-    }
-    this.indexQuestion++;
-
-    if (this.userTokenService.evaluation.last[0] < this.evaluationValueService.evaluationSelected.length - 1) {
-      this.userTokenService.evaluation.last[0]++;
-    }
-    console.log(this.userTokenService.evaluation.last[0]);
+    this.userTokenService.evaluation.tests[0] = this.answers.join('');
+    console.log(this.userTokenService.evaluation.tests[0]);
   }
 
 }

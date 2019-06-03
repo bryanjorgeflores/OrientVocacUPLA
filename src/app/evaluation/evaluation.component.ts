@@ -17,6 +17,10 @@ export class EvaluationComponent implements OnInit {
 
   ) { }
 
+  checkAnswerResult() {
+
+  }
+
   ngOnInit() {
     if (localStorage.getItem('usertoken') === null) {
       this.router.navigateByUrl('/login');

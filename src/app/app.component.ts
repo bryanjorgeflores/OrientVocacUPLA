@@ -40,8 +40,8 @@ export class AppComponent implements OnInit {
       this.evaluation
     );
     console.log('this.typeUser', this.userTokenService.typeUser);
-    console.log('this.user', this.userTokenService.evaluation);
-    console.log('this.evaluation', this.userTokenService.user);
+    console.log('this.user', this.userTokenService.user);
+    console.log('this.evaluation', this.userTokenService.evaluation);
 
     switch (localStorage.getItem('evaluationtype')) {
       case EvaluationType.intelligence:

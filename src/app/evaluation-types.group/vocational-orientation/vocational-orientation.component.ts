@@ -29,7 +29,7 @@ export class VocationalOrientationComponent implements OnInit, OnDestroy {
     if (this.userTokenService.evaluation.last[2]) {
       this.indexQuestion = this.userTokenService.evaluation.last[2];
     }
-    this.answers = this.userTokenService.evaluation.test[2].split('');
+    this.answers = this.userTokenService.evaluation.tests[2].split('');
     console.log(this.answers);
     this.checkAnswerResult(+this.answers[this.indexQuestion]);
   }
@@ -63,8 +63,12 @@ export class VocationalOrientationComponent implements OnInit, OnDestroy {
   }
 
   checkAnswerResult(laterResult: number): void {
-    if (isNaN(laterResult)) { laterResult = 0; }
+    if (isNaN(laterResult)) {
+      laterResult = 0;
+    }
+
     this.resultCurrent = laterResult;
+
     switch (laterResult) {
       case 3:
         this.answer1 = true; this.answer2 = true; this.answer3 = false;
@@ -82,24 +86,20 @@ export class VocationalOrientationComponent implements OnInit, OnDestroy {
   }
 
   answerQuestion(): void {
-    if (this.indexQuestion >= this.evaluationValueService.evaluationSelected.length - 1) {
+    if (this.indexQuestion >= 107) {
+
       this.answers[this.indexQuestion] = this.resultCurrent.toString();
-      console.log(this.answers[107]);
       this.indexQuestion = 0;
-      this.userTokenService.evaluation.last[2] = this.evaluationValueService.evaluationSelected.length - 1;
+      this.userTokenService.evaluation.last[2] = 107;
       this.checkAnswerResult(+this.answers[this.indexQuestion]);
-      console.log(this.userTokenService.evaluation.last[2]);
       return;
     }
-    console.log('before index', this.indexQuestion);
     this.answers[this.indexQuestion] = this.resultCurrent.toString();
-    console.log('before answer', this.answers[this.indexQuestion]);
+
     this.indexQuestion++;
-    console.log('after index', this.indexQuestion);
-    console.log('after answer', this.answers[this.indexQuestion]);
     this.checkAnswerResult(+this.answers[this.indexQuestion]);
 
-    if (this.userTokenService.evaluation.last[2] < this.evaluationValueService.evaluationSelected.length - 1) {
+    if (this.userTokenService.evaluation.last[2] < 107) {
       this.userTokenService.evaluation.last[2]++;
     }
   }
@@ -107,8 +107,8 @@ export class VocationalOrientationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.answers[this.indexQuestion] = this.resultCurrent.toString();
-    this.userTokenService.evaluation.test[2] = this.answers.join('');
-    console.log(this.userTokenService.evaluation.test[2]);
+    this.userTokenService.evaluation.tests[2] = this.answers.join('');
+    console.log(this.userTokenService.evaluation.tests[2]);
   }
 
 }

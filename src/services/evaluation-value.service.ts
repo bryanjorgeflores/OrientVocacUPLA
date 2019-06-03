@@ -14,7 +14,7 @@ export class EvaluationValueService {
   public evaluationSelected: Array<CharacterologicalQuestion | string | VocationalOrientationQuestion>;
 
   public evaluationInit: Evaluation = {
-    test: ['', '', ''],
+    tests: ['', '', ''],
     results: [
       { code: 0, chord: false },
       { code: 1, chord: false },

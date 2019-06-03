@@ -6,6 +6,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarItem } from 'src/interfaces/navbar-item.interface';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 import { ComponentConfig } from 'src/config/globals.config/render-component.global.config';
+import { EvaluationPutProvider } from 'src/providers/put.providers/evaluation.put.provider';
+import { UserTokenService } from 'src/services/user-token.service';
 
 
 @Component({
@@ -23,7 +25,9 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     public userGlobalConfig: UserGlobalConfig,
+    private userTokenService: UserTokenService,
     public componentConfig: ComponentConfig,
+    private evaluationPutProvider: EvaluationPutProvider
 
   ) {
     this.styleNavBar = {};
@@ -60,6 +64,13 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     this.componentConfig.renderNavbar = false;
     this.userGlobalConfig.typeUser = '';
+
+    this.evaluationPutProvider.putTypeEvaluation(this.userTokenService.evaluation)
+      .subscribe(
+        result => console.log(result),
+        err => console.error(err)
+      );
+
     this.router.navigateByUrl(componentDIR);
   }
 

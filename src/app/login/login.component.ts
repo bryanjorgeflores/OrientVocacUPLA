@@ -7,6 +7,7 @@ import { User } from 'src/interfaces/models/user.model';
 import { UserGlobalConfig } from 'src/config/globals.config/user.global.config';
 import { ComponentConfig } from 'src/config/globals.config/render-component.global.config';
 import { setStyleBody } from 'src/config/dom.config/navbar.dom.config';
+import { UserTokenService } from 'src/services/user-token.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userPostProvider: UserPostProvider,
     private userGlobalConfig: UserGlobalConfig,
+    private userTokenService: UserTokenService,
     private componentConfig: ComponentConfig,
 
   ) {
@@ -73,19 +75,14 @@ export class LoginComponent implements OnInit {
           (userToken: User) => {
             console.log(userToken);
             localStorage.setItem('usertoken', JSON.stringify(userToken));
-
+            localStorage.setItem('evaluationtoken', JSON.stringify(userToken.evaluation));
             localStorage.setItem('typeuser', userToken.type);
-            this.userGlobalConfig.typeUser = userToken.type;
-
+            this.userTokenService.evaluation = userToken.evaluation;
             this.userGlobalConfig.typeUser = userToken.type;
             this.componentConfig.renderNavbar = true;
 
-            if (userToken.type === 'student') {
-              this.router.navigateByUrl('/evaluations');
+            this.router.navigateByUrl('/evaluations');
 
-            } else if (userToken.type === 'administrator') {
-              this.router.navigateByUrl('/schools');
-            }
           },
           (err) => {
             this.labelIdLogin = {

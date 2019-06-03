@@ -1,3 +1,5 @@
+import { Evaluation } from './evaluation.model';
+
 export interface User {
   _id?: string;
   username: string;
@@ -8,5 +10,6 @@ export interface User {
   degree: string;
   gender: string;
   career: string;
-  evaluation?: string;
+  evaluation?: Evaluation;
 }
+
